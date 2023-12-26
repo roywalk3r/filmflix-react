@@ -30,7 +30,43 @@ function MovieDetails() {
     };
 
     fetchData();
-  }, [id]);
+    // Update meta tags directly in the document head
+    const updateMetaTags = () => {
+      document.title = `${
+        movieDetailsResult.original_title || "Movie Details"
+      } | FilmFlix`;
+
+      const metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      metaDescription.content = movieDetailsResult.overview || "Movie Overview";
+      document.head.appendChild(metaDescription);
+
+      // Add other meta tags as needed
+      const ogType = document.createElement("meta");
+      ogType.content = "website";
+      document.head.appendChild(ogType);
+
+      const ogUrl = document.createElement("meta");
+      ogUrl.content = `your_website_url/${id}`;
+      document.head.appendChild(ogUrl);
+
+      // Add more meta tags as necessary
+    };
+
+    // Call the function to update meta tags when the component mounts
+    updateMetaTags();
+    updateMetaTags();
+
+    // Clean up function to remove added meta tags when the component unmounts
+    return () => {
+      document.title = "FilmFlix"; // Reset the title to a default value
+      document.head
+        .querySelectorAll('meta[name="description"]')
+        .forEach((e) => e.remove());
+      // Remove other added meta tags as necessary
+    };
+  }, [movieDetailsResult, id]); // Make sure to include any dependencies
+
   return (
     <>
       <div className="section-container body-container">
