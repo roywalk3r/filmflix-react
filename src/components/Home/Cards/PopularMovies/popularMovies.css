@@ -1,0 +1,64 @@
+/* Heading */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--container-color);
+  padding: 8px 14px;
+  border: 1px solid hsl(200 100% 99% / 5%);
+  margin-bottom: 2rem;
+}
+
+.heading-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Movies */
+.movies .heading {
+  padding: 10px 14px;
+}
+
+.movies-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(247px, 1fr));
+  gap: 1.5rem;
+}
+
+.movies-content .movie-box:hover .movie-box-img {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.watch-btn {
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+  color: var(--text-color);
+}
+
+.watch-btn .bx {
+  font-size: 21px;
+  background: var(--main-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watch-btn .bx:hover {
+  background-color: (--hover-color);
+}
+
+.watch-btn span {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.play-btn {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
+}
