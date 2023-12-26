@@ -130,6 +130,9 @@
 }
 
 @media (max-width: 540px) {
+  .swiper-content-wrapper {
+    margin-top: 20%;
+  }
   .content-text {
     bottom: 10%;
   }
