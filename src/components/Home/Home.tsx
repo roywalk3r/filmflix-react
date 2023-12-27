@@ -58,10 +58,16 @@ function Home() {
                       <h1>{b.original_title}</h1>
                     </div>
                     <div className="banner_movie_details">
-                      <span className="question_mark">?</span>
+                      <span className="question_mark">R</span>
                       <span className="hd">HD</span>
                       <span className="caption">cc</span>
-                      <span className="release_date">{b.release_date}</span>
+                      <span className="release_date">
+                        {new Date(b.release_date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric", // or "2-digit" for two-digit day representation
+                        })}
+                      </span>
                     </div>
                     <div className="banner_movie_overview">
                       <p>{b.overview}</p>

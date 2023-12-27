@@ -60,9 +60,24 @@
 }
 .banner_movie_details span {
   display: flex;
-  background-color: var(--chalice);
-  padding: 5px 7px;
+  /* background-color: var(--chalice); */
+  padding: 5px;
   margin-right: 10px;
+}
+
+.banner_movie_details .question_mark {
+  border: 1px solid var(--boulder);
+  color: var(--boulder);
+}
+.banner_movie_details .hd {
+  background-color: var(--boulder);
+}
+.banner_movie_details .caption {
+  background-color: var(--boulder);
+}
+.banner_movie_details .release_date {
+  color: var(--g-white);
+  background-color: var(--daisy);
 }
 .banner_movie_overview {
   color: var(--boulder);
@@ -131,7 +146,7 @@
 
 @media (max-width: 540px) {
   .swiper-content-wrapper {
-    margin-top: 20%;
+    margin-top: 24%;
   }
   .content-text {
     bottom: 10%;
@@ -147,6 +162,6 @@
   }
   .banner_movie_name h1 {
     font-size: 90%;
-    width: 100%;
+    width: 99%;
   }
 }
