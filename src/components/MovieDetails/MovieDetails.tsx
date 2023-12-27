@@ -55,7 +55,6 @@ function MovieDetails() {
 
     // Call the function to update meta tags when the component mounts
     updateMetaTags();
-    updateMetaTags();
 
     // Clean up function to remove added meta tags when the component unmounts
     return () => {
@@ -65,7 +64,7 @@ function MovieDetails() {
         .forEach((e) => e.remove());
       // Remove other added meta tags as necessary
     };
-  }, [movieDetailsResult, id]); // Make sure to include any dependencies
+  }, [id]); // Make sure to include any dependencies
 
   return (
     <>

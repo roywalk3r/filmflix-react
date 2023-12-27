@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <>
       <header>
-        <div className={`container nav ${isNavVisible ? "show" : ""}`}>
+        <div className={`header-container nav ${isNavVisible ? "show" : ""}`}>
           <i className="fas fa-bars menu" id="menu" onClick={toggleNav}></i>
           <NavLink to="/home" className="logo">
             Film<span>Flix</span>
