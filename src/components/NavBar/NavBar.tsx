@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./navbar.css";
 
 function Navbar() {
   const [isNavVisible, setNavVisibility] = useState(false);
+  const location = useLocation();
 
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
 
+  // Check if the current route is not the landing page ("/"), then show the navbar
+  const showNavbar = location.pathname !== "/";
+
   return (
-    <>
+    // Conditionally render the Navbar based on the showNavbar variable
+    showNavbar && (
       <header>
         <div className={`header-container nav ${isNavVisible ? "show" : ""}`}>
           <i className="fas fa-bars menu" id="menu" onClick={toggleNav}></i>
@@ -23,13 +28,13 @@ function Navbar() {
                 <NavLink to="/browse">Browse</NavLink>
               </li>
               <li>
-                <NavLink to="/movies/">Movie</NavLink>
+                <NavLink to="/movies/">Movies</NavLink>
               </li>
               <li>
                 <NavLink to="/tv_shows">TV Shows</NavLink>
               </li>
               <li>
-                <NavLink to="/kid">Kids</NavLink>
+                <NavLink to="/kids">Kids</NavLink>
               </li>
             </ul>
           </nav>
@@ -40,7 +45,7 @@ function Navbar() {
           <input type="submit" className="signin" value="sign in" />
         </div>
       </header>
-    </>
+    )
   );
 }
 

@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./components/Home/Home";
+import LandingPage from "./components/LandingPage/LandingPage";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import Navbar from "./components/NavBar/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -11,8 +12,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
-        {/* <Route path="/movies" element={<MovieDetails />} /> */}
-        <Route index element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </Router>
   );

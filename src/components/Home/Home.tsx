@@ -60,7 +60,7 @@ function Home() {
                     <div className="banner_movie_details">
                       <span className="question_mark">R</span>
                       <span className="hd">HD</span>
-                      <span className="caption">cc</span>
+                      <span className="caption">CC</span>
                       <span className="release_date">
                         {new Date(b.release_date).toLocaleDateString("en-US", {
                           year: "numeric",
