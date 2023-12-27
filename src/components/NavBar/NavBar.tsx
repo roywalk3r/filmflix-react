@@ -17,27 +17,19 @@ function Navbar() {
           <NavLink to="/home" className="logo">
             Film<span>Flix</span>
           </NavLink>
-          <nav className="navbar">
+          <nav className={`navbar ${isNavVisible ? "show" : ""}`}>
             <ul className="navlinks">
               <li>
-                <NavLink to="/browse" onClick={toggleNav}>
-                  Browse
-                </NavLink>
+                <NavLink to="/browse">Browse</NavLink>
               </li>
               <li>
-                <NavLink to="/movies/" onClick={toggleNav}>
-                  Movie
-                </NavLink>
+                <NavLink to="/movies/">Movie</NavLink>
               </li>
               <li>
-                <NavLink to="/tv_shows" onClick={toggleNav}>
-                  TV Shows
-                </NavLink>
+                <NavLink to="/tv_shows">TV Shows</NavLink>
               </li>
               <li>
-                <NavLink to="/kid" onClick={toggleNav}>
-                  Kids
-                </NavLink>
+                <NavLink to="/kid">Kids</NavLink>
               </li>
             </ul>
           </nav>

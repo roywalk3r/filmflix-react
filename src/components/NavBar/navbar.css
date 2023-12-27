@@ -35,7 +35,8 @@ header {
   font-family: var(--ff-poppins);
   font-weight: 600;
 }
-.menu {
+
+i#menu {
   display: none;
 }
 .navbar {
@@ -121,8 +122,8 @@ header {
     position: absolute;
     top: 5rem;
     left: 0;
-    display: flex;
-    background: red;
+    /* display: flex; */
+    background: var(--daisy);
     transition: 0.3s ease-in-out;
     display: none;
   }
@@ -138,6 +139,13 @@ header {
     justify-content: center;
     width: 100%;
   }
+
+  i#menu {
+    display: flex;
+  }
+  .show.navbar {
+    display: flex;
+  }
 }
 
 @media (max-width: 430px) {
@@ -146,6 +154,9 @@ header {
   }
   .navlinks li a {
     font-size: 15px;
+  }
+  .show.navbar {
+    margin-top: 8%;
   }
 }
 
@@ -168,8 +179,8 @@ header {
     width: 95%;
     position: fixed;
     top: 50px;
-    margin-left: -9px !important;
-    display: none;
+    display: flex;
+    margin-top: 20px;
   }
   .navbar {
     margin-top: 0.5rem;
