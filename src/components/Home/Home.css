@@ -116,7 +116,7 @@
   display: flex;
   justify-content: center;
   height: 40.39px;
-  align-items: flex-end;
+  align-items: center;
 }
 .swiper-pagination {
   right: 0 !important;

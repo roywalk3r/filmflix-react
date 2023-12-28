@@ -41,7 +41,13 @@ function PopularMovies() {
               />
               <div className="box-text">
                 <h2 className="movie-title">{p.original_title}</h2>
-                <span className="movie-type">{p.release_date}</span>
+                <span className="movie-type">
+                  {new Date(p.release_date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric", // or "2-digit" for two-digit day representation
+                  })}
+                </span>
 
                 <Link
                   to={`/movie/${p.id}`}

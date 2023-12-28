@@ -24,7 +24,7 @@ function LatestMovies() {
 
   return (
     <>
-      <section className="popular container" id="popular">
+      <section className="popular container">
         {/* Heading   */}
         <div className="heading">
           <h2 className="heading-title">Latest Movies</h2>
@@ -80,7 +80,13 @@ function LatestMovies() {
                     />
                     <div className="box-text">
                       <h2 className="movie-title">{t.original_title}</h2>
-                      <span className="movie-type">{t.release_date}</span>
+                      <span className="movie-type">
+                        {new Date(t.release_date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric", // or "2-digit" for two-digit day representation
+                        })}
+                      </span>
                       <Link
                         to={`/movie/${t.id}`}
                         key={t.id}
