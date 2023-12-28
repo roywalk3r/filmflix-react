@@ -12,7 +12,7 @@ function LatestMovies() {
     const fetchTrendingMoviesResultData = async () => {
       try {
         const response = await MovieApiService.trendingMovieApiData();
-        console.log(response.data, "trendingMoviesResult#");
+        // console.log(response.data, "trendingMoviesResult#");
         setTrendingMoviesResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);

@@ -11,7 +11,7 @@ function PopularMovies() {
     const fetchPopularMoviesResultData = async () => {
       try {
         const response = await MovieApiService.popularMovieApiData();
-        console.log(response.data, "popularMoviesResult#");
+        // console.log(response.data, "popularMoviesResult#");
         setPopularMoviesResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);

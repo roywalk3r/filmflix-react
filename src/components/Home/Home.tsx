@@ -24,7 +24,7 @@ function Home() {
     const fetchBannerData = async () => {
       try {
         const response = await MovieApiService.bannerApiData();
-        console.log(response.data, "bannerresult#");
+        //// console.log(response.data, "bannerresult#");
         setBannerResult(response.data.results.slice(0, 9));
       } catch (error) {
         console.error("Error fetching banner data:", error);
@@ -48,7 +48,7 @@ function Home() {
             //   prevEl: ".swiper-button-prev",
             // }}
 
-            autoplay={{ delay: 3000, disableOnInteraction: true }}
+            autoplay={{ delay: 7000, disableOnInteraction: true }}
             pagination={{ clickable: true }}
             grabCursor={true}
             effect="fade"
@@ -56,10 +56,6 @@ function Home() {
             {bannerResult.map((b, index) => (
               <SwiperSlide key={index}>
                 <div className="swiper-content-wrapper">
-                  {/* <div className="swiper-content-text">
-                    <h2>{b.original_title}</h2>
-                    <p>{b.overview}</p>
-                  </div> */}
                   <div className="content-text">
                     <div className="banner_movie_name">
                       <h1>{b.original_title}</h1>
@@ -97,8 +93,6 @@ function Home() {
                 </div>
               </SwiperSlide>
             ))}
-            {/* <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div> */}
           </Swiper>
         </div>
       </div>

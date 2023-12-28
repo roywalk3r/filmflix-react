@@ -13,7 +13,7 @@ function MovieCast() {
       try {
         // Get movie cast
         const castResponse = await MovieApiService.getMovieCast(id);
-        console.log(castResponse.data, "movieCastResult#");
+        //// console.log(castResponse.data, "movieCastResult#");
         setMovieCastResult(castResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -16,7 +16,7 @@ function RecommendedMovies() {
         const recommendedResponse = await MovieApiService.getRecommendedMovies(
           id
         );
-        console.log(recommendedResponse.data, "recommendedMoviesResult#");
+        //// console.log(recommendedResponse.data, "recommendedMoviesResult#");
 
         setRecommendedMoviesResult(recommendedResponse.data.results);
       } catch (error) {

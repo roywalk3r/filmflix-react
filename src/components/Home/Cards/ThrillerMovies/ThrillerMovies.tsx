@@ -12,7 +12,7 @@ function ThrillerMovies() {
     const fetchThrillerMoviesResultData = async () => {
       try {
         const response = await MovieApiService.fetchThrillerMovies();
-        console.log(response.data, "popularMoviesResult#");
+        // console.log(response.data, "popularMoviesResult#");
         setThrillerMoviesResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);

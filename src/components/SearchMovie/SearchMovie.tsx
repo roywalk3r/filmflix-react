@@ -16,7 +16,7 @@ function SearchMovie() {
         });
 
         // Handle the response data
-        console.log(response, "search result");
+        // console.log(response, "search result");
         setSearchResults(response.data.results);
       } catch (error) {
         // Handle errors

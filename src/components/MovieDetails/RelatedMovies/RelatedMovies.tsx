@@ -11,7 +11,7 @@ function RelatedMovies() {
     const fetchRelatedMoviesData = async () => {
       try {
         const relatedResponse = await MovieApiService.getRelatedMovies(id);
-        console.log(relatedResponse.data, "relatedMoviesResult#");
+        // console.log(relatedResponse.data, "relatedMoviesResult#");
         setRelatedMoviesResult(relatedResponse.data.results.slice(0, 4));
       } catch (error) {
         console.error("Error fetching data:", error);

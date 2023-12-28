@@ -35,12 +35,12 @@ function MovieDetails() {
       try {
         // Get movie details
         const detailsResponse = await MovieApiService.getMovieDetails(id);
-        console.log(detailsResponse.data, "movieDetailsResult#");
+        // console.log(detailsResponse.data, "movieDetailsResult#");
         setMovieDetailsResult(detailsResponse.data);
 
         // // Get movie cast
         // const castResponse = await MovieApiService.getMovieCast(id);
-        // console.log(castResponse.data, "movieCastResult#");
+        //// console.log(castResponse.data, "movieCastResult#");
         // setMovieCastResult(castResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -12,7 +12,7 @@ function ScienceFiction() {
     const fetchScienceFictionResultData = async () => {
       try {
         const response = await MovieApiService.fetchScienceFictionMovies();
-        console.log(response.data, "popularMoviesResult#");
+        // console.log(response.data, "popularMoviesResult#");
         setScienceFictionResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);
