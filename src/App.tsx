@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import Navbar from "./components/NavBar/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SearchMovie from "./components/SearchMovie/SearchMovie";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/search" element={<SearchMovie />} />
       </Routes>
     </Router>
   );

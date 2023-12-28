@@ -5,29 +5,29 @@ import MovieApiService from "../../../movieApiService/movieApiService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
-function ActionMovies() {
-  const [actionMoviesResult, setActionMoviesResult] = useState<any[]>([]);
+function AdventureMovies() {
+  const [adventureMoviesResult, setAdventureMoviesResult] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchActionMoviesResultData = async () => {
+    const fetchAdventureMoviesResultData = async () => {
       try {
-        const response = await MovieApiService.fetchActionMovies();
+        const response = await MovieApiService.fetchAdventureMovies();
         console.log(response.data, "popularMoviesResult#");
-        setActionMoviesResult(response.data.results.slice(0, 12));
+        setAdventureMoviesResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }
     };
 
-    fetchActionMoviesResultData();
+    fetchAdventureMoviesResultData();
   }, []);
 
   return (
     <>
-      <section className="popular container" id="popular">
+      <section className="popular container">
         {/* Heading   */}
         <div className="heading">
-          <h2 className="heading-title">Action Movies</h2>
+          <h2 className="heading-title">Adventure Movies</h2>
           <div className="swiper-btn">
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
@@ -69,7 +69,7 @@ function ActionMovies() {
             grabCursor={true}
             // effect="fade"
           >
-            {actionMoviesResult.map((a, index) => (
+            {adventureMoviesResult.map((a, index) => (
               <SwiperSlide key={index}>
                 <div className="swiper-slide">
                   <div className="movie-box">
@@ -99,8 +99,6 @@ function ActionMovies() {
                 </div>
               </SwiperSlide>
             ))}
-            {/* <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div> */}
           </Swiper>
         </div>
       </section>
@@ -108,4 +106,4 @@ function ActionMovies() {
   );
 }
 
-export default ActionMovies;
+export default AdventureMovies;

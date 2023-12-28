@@ -11,7 +11,25 @@ function MovieDetails() {
   const { id } = useParams<{ id: any }>();
   const [movieDetailsResult, setMovieDetailsResult] = useState<any>({});
   // const [movieCastResult, setMovieCastResult] = useState<any>({});
-
+  const displayGenres = () => {
+    return movieDetailsResult.genres?.map((genre: any) => (
+      <span key={genre.id}>{genre.name}</span>
+    ));
+  };
+  const displayProductionCompanies = () => {
+    return movieDetailsResult.production_companies?.map(
+      (production_company: any) => (
+        <span key={production_company.id}>{production_company.name}</span>
+      )
+    );
+  };
+  const displayProductionCountries = () => {
+    return movieDetailsResult.production_countries?.map(
+      (production_country: any) => (
+        <span key={production_country.id}>{production_country.name}</span>
+      )
+    );
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -119,13 +137,25 @@ function MovieDetails() {
                     }
                   )}
                 </span>
+                <div className="genres">
+                  {"Genres:"}
+                  {displayGenres()}
+                </div>
 
+                <div className="genres">
+                  {"Companies:"}
+                  {displayProductionCompanies()}
+                </div>
+                <div className="genres">
+                  {"Countries:"}
+                  {displayProductionCountries()}
+                </div>
                 <div className="rating-card">
                   <div className="rating-content">
                     <h2 className="card-heading">
-                      {movieDetailsResult.vote_count}
+                      {movieDetailsResult.vote_average}/10
                     </h2>
-                    <span>4314 reviews</span>
+                    <span>{movieDetailsResult.vote_count}</span>
                   </div>
                   <div className="stars">
                     <input type="radio" name="rating" id="star5" />

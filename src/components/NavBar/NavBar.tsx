@@ -1,10 +1,32 @@
-import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 
 function Navbar() {
   const [isNavVisible, setNavVisibility] = useState(false);
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close the navbar if the click is outside the navbar and it is currently visible
+      if (
+        isNavVisible &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setNavVisibility(false);
+      }
+    };
+
+    // Attach the event listener when the component mounts
+    document.addEventListener("click", handleClickOutside);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isNavVisible]);
 
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
@@ -17,30 +39,34 @@ function Navbar() {
     // Conditionally render the Navbar based on the showNavbar variable
     showNavbar && (
       <header>
-        <div className={`header-container nav ${isNavVisible ? "show" : ""}`}>
+        <div
+          className={`header-container nav ${isNavVisible ? "show" : ""}`}
+          ref={navRef}
+        >
           <i className="fas fa-bars menu" id="menu" onClick={toggleNav}></i>
-          <NavLink to="/home" className="logo">
+          <Link to="/home" className="logo">
             Film<span>Flix</span>
-          </NavLink>
+          </Link>
           <nav className={`navbar ${isNavVisible ? "show" : ""}`}>
             <ul className="navlinks">
               <li>
-                <NavLink to="/browse">Browse</NavLink>
+                <Link to="/browse">Browse</Link>
               </li>
               <li>
-                <NavLink to="/movies/">Movies</NavLink>
+                <Link to="/movies/">Movies</Link>
               </li>
               <li>
-                <NavLink to="/tv_shows">TV Shows</NavLink>
+                <Link to="/tv_shows">TV Shows</Link>
               </li>
               <li>
-                <NavLink to="/kids">Kids</NavLink>
+                <Link to="/kids">Kids</Link>
               </li>
             </ul>
           </nav>
           <div className="search-box">
-            <input type="search" id="search-input" placeholder="Search movie" />
-            <i className="bx bx-search" id="search-icon"></i>
+            <Link to={"/search"}>
+              <i className="bx bx-search" id="search-icon"></i>
+            </Link>
           </div>
           <input type="submit" className="signin" value="sign in" />
         </div>

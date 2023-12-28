@@ -5,29 +5,29 @@ import MovieApiService from "../../../movieApiService/movieApiService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
-function ActionMovies() {
-  const [actionMoviesResult, setActionMoviesResult] = useState<any[]>([]);
+function ComedyMovies() {
+  const [comedyMoviesResult, setComedyMoviesResult] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchActionMoviesResultData = async () => {
+    const fetchComedyMoviesResultData = async () => {
       try {
-        const response = await MovieApiService.fetchActionMovies();
+        const response = await MovieApiService.fetchComedyMovies();
         console.log(response.data, "popularMoviesResult#");
-        setActionMoviesResult(response.data.results.slice(0, 12));
+        setComedyMoviesResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }
     };
 
-    fetchActionMoviesResultData();
+    fetchComedyMoviesResultData();
   }, []);
 
   return (
     <>
-      <section className="popular container" id="popular">
+      <section className="popular container">
         {/* Heading   */}
         <div className="heading">
-          <h2 className="heading-title">Action Movies</h2>
+          <h2 className="heading-title">Comedy Movies</h2>
           <div className="swiper-btn">
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
@@ -69,27 +69,27 @@ function ActionMovies() {
             grabCursor={true}
             // effect="fade"
           >
-            {actionMoviesResult.map((a, index) => (
+            {comedyMoviesResult.map((c, index) => (
               <SwiperSlide key={index}>
                 <div className="swiper-slide">
                   <div className="movie-box">
                     <img
-                      src={`https://image.tmdb.org/t/p/original/${a.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/original/${c.poster_path}`}
                       alt="{ t.original_title }"
                       className="movie-box-img w-100"
                     />
                     <div className="box-text">
-                      <h2 className="movie-title">{a.original_title}</h2>
+                      <h2 className="movie-title">{c.original_title}</h2>
                       <span className="movie-type">
-                        {new Date(a.release_date).toLocaleDateString("en-US", {
+                        {new Date(c.release_date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "short",
                           day: "numeric", // or "2-digit" for two-digit day representation
                         })}
                       </span>
                       <Link
-                        to={`/movie/${a.id}`}
-                        key={a.id}
+                        to={`/movie/${c.id}`}
+                        key={c.id}
                         className="watch-btn play-btn"
                       >
                         <i className="bx bx-right-arrow"></i>
@@ -99,8 +99,6 @@ function ActionMovies() {
                 </div>
               </SwiperSlide>
             ))}
-            {/* <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div> */}
           </Swiper>
         </div>
       </section>
@@ -108,4 +106,4 @@ function ActionMovies() {
   );
 }
 
-export default ActionMovies;
+export default ComedyMovies;

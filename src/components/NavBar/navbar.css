@@ -75,16 +75,25 @@ i#menu {
 }
 
 .search-box {
-  max-width: 380px;
+  max-width: fit-content;
   width: 100%;
   display: flex;
   align-items: center;
   column-gap: 0.7rem;
   padding: 8px 15px;
-  background: var(--container-color);
+  background: #d42f2f;
   border-radius: 3rem;
   margin-right: 1rem;
   display: flex;
+  box-shadow: 6px 2px #d42f2f;
+}
+.search-box .bx {
+  color: ghostwhite;
+  font-size: 19px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
 }
 
 .search-box .bx:hover {
@@ -169,19 +178,10 @@ i#menu {
 @media (max-width: 640px) {
   .search-box {
     z-index: 500px;
-    max-width: 240px;
   }
 }
 
 @media (max-width: 430px) {
-  .search-box {
-    max-width: 400px;
-    width: 95%;
-    position: fixed;
-    top: 50px;
-    display: flex;
-    margin-top: 20px;
-  }
   .navbar {
     margin-top: 0.5rem;
   }

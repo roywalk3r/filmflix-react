@@ -47,21 +47,63 @@ class MovieApiService {
     return axios.get(`${baseurl}/movie/${movieId}/credits?api_key=${apikey}`);
   }
 
-  // action
+  // action:28
   static fetchActionMovies() {
     return axios.get(
       `${baseurl}/discover/movie?api_key=${apikey}&with_genres=28`
     );
   }
 
-  // adventure
+  // adventure:12
   static fetchAdventureMovies() {
     return axios.get(
       `${baseurl}/discover/movie?api_key=${apikey}&with_genres=12`
     );
   }
 
-  // ... (similar methods for other movie genres)
+  // animation:16
+  static fetchAnimationMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=16`
+    );
+  }
+
+  // comedy:35
+  static fetchComedyMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=35`
+    );
+  }
+
+  // documentary:99
+  static fetchDocumentaryMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=99`
+    );
+  }
+
+  // science-fiction:878
+
+  static fetchScienceFictionMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=878`
+    );
+  }
+
+  // thriller:53
+  static fetchThrillerMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=53`
+    );
+  }
+
+  // thriller:27
+  static fetchHorrorMovies() {
+    return axios.get(
+      `${baseurl}/discover/movie?api_key=${apikey}&with_genres=27`
+    );
+  }
+  //Detail Page
 
   // getRelatedMovies
   static getRelatedMovies(id: any) {

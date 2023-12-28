@@ -1,25 +1,25 @@
-// import "./actionMovies.css";
+// import "./Documentary.css";
 import { useEffect, useState } from "react";
 
 import MovieApiService from "../../../movieApiService/movieApiService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
-function ActionMovies() {
-  const [actionMoviesResult, setActionMoviesResult] = useState<any[]>([]);
+function Documentary() {
+  const [documentaryResult, setDocumentaryResult] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchActionMoviesResultData = async () => {
+    const fetchDocumentaryResultData = async () => {
       try {
-        const response = await MovieApiService.fetchActionMovies();
+        const response = await MovieApiService.fetchDocumentaryMovies();
         console.log(response.data, "popularMoviesResult#");
-        setActionMoviesResult(response.data.results.slice(0, 12));
+        setDocumentaryResult(response.data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }
     };
 
-    fetchActionMoviesResultData();
+    fetchDocumentaryResultData();
   }, []);
 
   return (
@@ -27,7 +27,7 @@ function ActionMovies() {
       <section className="popular container" id="popular">
         {/* Heading   */}
         <div className="heading">
-          <h2 className="heading-title">Action Movies</h2>
+          <h2 className="heading-title">Documentary </h2>
           <div className="swiper-btn">
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
@@ -69,27 +69,27 @@ function ActionMovies() {
             grabCursor={true}
             // effect="fade"
           >
-            {actionMoviesResult.map((a, index) => (
+            {documentaryResult.map((d, index) => (
               <SwiperSlide key={index}>
                 <div className="swiper-slide">
                   <div className="movie-box">
                     <img
-                      src={`https://image.tmdb.org/t/p/original/${a.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/original/${d.poster_path}`}
                       alt="{ t.original_title }"
                       className="movie-box-img w-100"
                     />
                     <div className="box-text">
-                      <h2 className="movie-title">{a.original_title}</h2>
+                      <h2 className="movie-title">{d.original_title}</h2>
                       <span className="movie-type">
-                        {new Date(a.release_date).toLocaleDateString("en-US", {
+                        {new Date(d.release_date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "short",
                           day: "numeric", // or "2-digit" for two-digit day representation
                         })}
                       </span>
                       <Link
-                        to={`/movie/${a.id}`}
-                        key={a.id}
+                        to={`/movie/${d.id}`}
+                        key={d.id}
                         className="watch-btn play-btn"
                       >
                         <i className="bx bx-right-arrow"></i>
@@ -108,4 +108,4 @@ function ActionMovies() {
   );
 }
 
-export default ActionMovies;
+export default Documentary;

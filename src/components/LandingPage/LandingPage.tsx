@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./landingpage.css";
 function LandingPage() {
   return (
@@ -6,17 +6,17 @@ function LandingPage() {
       <body>
         <div className="showcase">
           <div className="showcase-top">
-            <NavLink to="/home" className="landing_logo">
+            <Link to="/home" className="landing_logo">
               {" "}
               Film<span id="flix">Flix</span>{" "}
-            </NavLink>
+            </Link>
           </div>
           <div className="showcase-content">
             <h1>See what's next</h1>
             <p>Watch anywhere. FREE Anytime</p>
-            <NavLink to="/home" className="btn btn-xl">
+            <Link to="/home" className="btn btn-xl">
               WATCH NOW<i className="fas fa-chevron-right btn-icon"></i>
-            </NavLink>
+            </Link>
           </div>
         </div>
         <main>

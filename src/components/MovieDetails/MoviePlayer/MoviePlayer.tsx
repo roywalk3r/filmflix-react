@@ -35,14 +35,7 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ movieDetailsResult }) => {
         />
       )}
       {videoVisible && (
-        <iframe
-          src={vidSrcUrl}
-          allowFullScreen
-          allowTransparency
-          allow="autoplay"
-          scrolling="no"
-          frameBorder="0"
-        ></iframe>
+        <iframe src={vidSrcUrl} allowFullScreen allow="autoplay"></iframe>
       )}
       {playButtonVisible && (
         <i

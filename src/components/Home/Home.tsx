@@ -9,6 +9,13 @@ import PopularMovies from "./Cards/PopularMovies/PopularMovies";
 import ActionMovies from "./Cards/ActionMovies/ActionMovie";
 import { Link } from "react-router-dom";
 import DisqusComments from "../MovieDetails/Disqus/DisqusComments";
+import AdventureMovies from "./Cards/AdventureMovies/AdventureMovies";
+import Animations from "./Cards/Animations/Animations";
+import ComedyMovies from "./Cards/ComedyMovies/ComedyMovies";
+import ThrillerMovies from "./Cards/ThrillerMovies/ThrillerMovies";
+import ScienceFiction from "./Cards/ScienceFiction/ScienceFiction";
+import Documentary from "./Cards/Documentary/Documentary";
+import HorrorMovies from "./Cards/HorrorMovies/HorrorMovies";
 
 function Home() {
   const [bannerResult, setBannerResult] = useState<any[]>([]);
@@ -98,6 +105,13 @@ function Home() {
       <LatestMovies />
       <PopularMovies />
       <ActionMovies />
+      <AdventureMovies />
+      <Animations />
+      <ComedyMovies />
+      <ThrillerMovies />
+      <ScienceFiction />
+      <Documentary />
+      <HorrorMovies />
       <div className="comment-section container">
         <h2 className="comment-head">
           <i className="bx bxs-star star"></i>

@@ -1,0 +1,126 @@
+.search-container {
+  position: relative;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 8%;
+}
+.search_movie_box {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 0.7rem;
+  padding: 8px 15px;
+  background: var(--container-color);
+  border-radius: 3rem;
+  margin-right: 1rem;
+  display: flex;
+  box-shadow: -5px 8px 0px 1px #d42f2f;
+  margin-bottom: 1rem;
+}
+.search_movie_box .bx {
+  color: ghostwhite;
+  font-size: 19px;
+  background: transparent;
+
+  font-weight: 700;
+}
+
+.search_movie_box .bx:hover {
+  color: var(--main-color);
+}
+
+#search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  background: transparent;
+  font-size: 0.938rem;
+}
+
+/* Style for the search results dropdown */
+.results-container {
+  position: absolute;
+  top: 100%;
+  left: 19%;
+  max-width: 800px;
+  width: 100%;
+  align-items: center;
+  column-gap: 0.7rem;
+  overflow-y: auto;
+  background-color: var(--container-color);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+/* Style for individual search result items */
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: background-color 0.2s;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid#999;
+}
+
+.result-item:hover {
+  background-color: var(--hover-color);
+}
+
+.result-image {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  object-fit: scale-down;
+}
+
+@media (max-width: 1200px) {
+  .center {
+    margin-top: 10%;
+  }
+}
+
+@media (max-width: 920px) {
+  .center {
+    margin: 12% 0 1rem 0;
+  }
+}
+
+@media (max-width: 780px) {
+  .center {
+    margin-top: 17%;
+  }
+}
+
+@media (max-width: 540px) {
+  .center {
+    margin-top: 25%;
+  }
+  .search_movie_box {
+    box-shadow: 9px 7px 0px 1px #d42f2f;
+  }
+  .movies-content {
+    grid-template-columns: repeat(auto-fit, minmax(154px, 1fr));
+    margin: 0 auto;
+    width: 98%;
+  }
+}
+
+@media (max-width: 350px) {
+  .center {
+    margin-top: 30%;
+  }
+}
