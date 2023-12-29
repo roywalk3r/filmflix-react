@@ -50,9 +50,7 @@ function MovieDetails() {
     fetchData();
     // Update meta tags directly in the document head
     const updateMetaTags = () => {
-      document.title = `${
-        movieDetailsResult.original_title || "Movie Details"
-      } | FilmFlix`;
+      document.title = `${movieDetailsResult.original_title}`;
 
       const metaDescription = document.createElement("meta");
       metaDescription.name = "description";
@@ -82,7 +80,7 @@ function MovieDetails() {
         .forEach((e) => e.remove());
       // Remove other added meta tags as necessary
     };
-  }, [id]); // Make sure to include any dependencies
+  }, [id, movieDetailsResult]);
 
   return (
     <>
