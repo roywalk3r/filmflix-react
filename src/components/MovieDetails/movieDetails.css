@@ -244,8 +244,11 @@ body {
 .genres {
   color: rgb(123, 59, 184);
   display: flex;
-  gap: 14px;
+  gap: 10px;
   font-weight: 500;
+  width: 98%;
+  flex-wrap: wrap;
+  flex-grow: 0;
 }
 .genres span {
   color: rgb(123, 59, 184);
