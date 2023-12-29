@@ -36,7 +36,7 @@ function RelatedTvShows() {
                 <small>Similar</small>
                 <h4>{r.name}</h4>
                 <span className="bottom-content">
-                  <p>Movie</p>
+                  <p>Tv</p>
                   <p>•</p>
                   <p className="fas fa-bookmark">&nbsp; {r.vote_count}</p>
                 </span>

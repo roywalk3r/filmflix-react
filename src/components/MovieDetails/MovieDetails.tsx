@@ -63,7 +63,7 @@ function MovieDetails() {
       document.head.appendChild(ogType);
 
       const ogUrl = document.createElement("meta");
-      ogUrl.content = `your_website_url/${id}`;
+      ogUrl.content = `https://filmflix-r.netlify.app/movie/${id}`;
       document.head.appendChild(ogUrl);
 
       // Add more meta tags as necessary
@@ -102,7 +102,6 @@ function MovieDetails() {
               <div className="content">
                 <h2>{movieDetailsResult.original_title}</h2>
                 <p className="tagline">{movieDetailsResult.tagline}</p>
-                <h1>{movieDetailsResult.original_name}</h1>
 
                 <div className="req">
                   {movieDetailsResult.release_date && (

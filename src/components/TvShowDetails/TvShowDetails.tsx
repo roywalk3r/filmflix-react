@@ -28,6 +28,7 @@ function TvShowDetails() {
       )
     );
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +44,7 @@ function TvShowDetails() {
     fetchData();
     // Update meta tags directly in the document head
     const updateMetaTags = () => {
-      document.title = `${tvShowDetailsResult.original_title}`;
+      document.title = `${tvShowDetailsResult.name}`;
 
       const metaDescription = document.createElement("meta");
       metaDescription.name = "description";
@@ -57,10 +58,8 @@ function TvShowDetails() {
       document.head.appendChild(ogType);
 
       const ogUrl = document.createElement("meta");
-      ogUrl.content = `your_website_url/${id}`;
+      ogUrl.content = `https://filmflix-r.netlify.app/tv/${id}`;
       document.head.appendChild(ogUrl);
-
-      // Add more meta tags as necessary
     };
 
     // Call the function to update meta tags when the component mounts
@@ -94,9 +93,8 @@ function TvShowDetails() {
                 />
               )}
               <div className="content">
-                <h2>{tvShowDetailsResult.original_title}</h2>
+                <h2>{tvShowDetailsResult.name}</h2>
                 <p className="tagline">{tvShowDetailsResult.tagline}</p>
-                <h1>{tvShowDetailsResult.original_name}</h1>
 
                 <div className="req">
                   {tvShowDetailsResult.first_air_date && (
@@ -114,7 +112,7 @@ function TvShowDetails() {
                   </span>
                   <span>
                     <i className="bx bx-time"></i>
-                    {tvShowDetailsResult.runtime}min
+                    {tvShowDetailsResult.episode_run_time}min/ep
                   </span>
                 </div>
                 <p>{tvShowDetailsResult.overview}</p>
@@ -141,6 +139,26 @@ function TvShowDetails() {
                   {"Countries:"}
                   {displayProductionCountries()}
                 </div>
+                {tvShowDetailsResult.seasons &&
+                  tvShowDetailsResult.seasons.length > 0 && (
+                    <div>
+                      <h2>Seasons:</h2>
+                      <ul>
+                        {tvShowDetailsResult.seasons
+                          .slice(1, 2)
+                          .map((season: any) => (
+                            <li key={season.id}>
+                              <h3>{season.name}</h3>
+                              <p>Air Date: {season.air_date}</p>
+                              <p>Episode Count: {season.episode_count}</p>
+                              <p>Episode Count: {season.episode_group}</p>
+                              <p>Overview: {season.overview}</p>
+                              {/* Add more details as needed */}
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  )}
                 <div className="rating-card">
                   <div className="rating-content">
                     <h2 className="card-heading">
