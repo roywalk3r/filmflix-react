@@ -1,30 +1,25 @@
-
-
 import { useState, useEffect } from "react";
 import "./searchMovie.css";
-import MovieApiService from "../movieApiService/movieApiService";
+import MovieApiService from "../apiService/movieApiService";
 import { Link } from "react-router-dom";
 
 function SearchMovie() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); // Specify the type explicitly
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Call the getSearchMovie method from MovieApiService
         const response = await MovieApiService.getSearchMovie({
           movieName: searchQuery,
         });
 
-        // Handle the response data
         setSearchResults(response.data.results);
       } catch (error) {
-        // Handle errors
         console.error(error);
         setError("An error occurred while fetching search results.");
       } finally {
@@ -32,12 +27,10 @@ function SearchMovie() {
       }
     };
 
-    // Implement debouncing to delay the API request
     const timerId = setTimeout(() => {
       if (searchQuery.trim() !== "") {
         fetchSearchResults();
       } else {
-        // Reset search results when the search query is empty
         setSearchResults([]);
       }
     }, 500);
@@ -72,22 +65,37 @@ function SearchMovie() {
               <div className="movie-box" key={item.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                  alt={`Poster for ${item.original_title}`}
+                  alt={`Poster for ${item.original_title || item.name}`}
                   className="movie-box-img"
                   loading="lazy"
                 />
                 <div className="box-text">
-                  <h2 className="movie-title">{item.original_title}</h2>
+                  <h2 className="movie-title">
+                    {item.original_title || item.name}
+                  </h2>
                   <span className="movie-type">
-                    {new Date(item.release_date).toLocaleDateString("en-US", {
+                    {new Date(
+                      item.release_date || item.first_air_date
+                    ).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
                     })}
                   </span>
-                  <Link to={`/movie/${item.id}`} className="watch-btn play-btn">
+                  <Link
+                    to={`/movie/${item.id}`} // Use a separate Link for movies
+                    className="watch-btn play-btn"
+                  >
                     <i className="bx bx-right-arrow"></i>
                   </Link>
+                  {item.media_type === "tv" && ( // Add conditional rendering for TV shows
+                    <Link
+                      to={`/tv/${item.id}`} // Use a separate Link for TV shows
+                      className="watch-btn play-btn"
+                    >
+                      <i className="bx bx-right-arrow"></i>
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

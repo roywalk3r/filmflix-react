@@ -1,7 +1,7 @@
 // import "./Documentary.css";
 import { useEffect, useState } from "react";
 
-import MovieApiService from "../../../movieApiService/movieApiService";
+import MovieApiService from "../../../apiService/movieApiService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";

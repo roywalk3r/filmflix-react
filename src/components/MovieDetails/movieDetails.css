@@ -460,7 +460,9 @@ footer {
   .main-left {
     width: 100%;
   }
-
+  .movie {
+    max-width: 100%;
+  }
   .movie-play {
     margin: 5rem auto 0 auto;
   }

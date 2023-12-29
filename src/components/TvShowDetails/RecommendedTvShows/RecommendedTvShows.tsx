@@ -1,30 +1,28 @@
-import MovieApiService from "../../apiService/movieApiService";
+import TvShowApiService from "../../apiService/tvShowsApiService";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";
-import "../movieDetails.css";
 // Initialize Swiper modules
 
-function RecommendedMovies() {
+function RecommendedTvShows() {
   const { id } = useParams<{ id: any }>();
-  const [recommendedMovies, setRecommendedMoviesResult] = useState<any[]>([]);
+  const [recommendedTvShows, setRecommendedTvShowsResult] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchRecommendedMoviesData = async () => {
+    const fetchRecommendedTvShowsData = async () => {
       try {
-        const recommendedResponse = await MovieApiService.getRecommendedMovies(
-          id
-        );
-        //// console.log(recommendedResponse.data, "recommendedMoviesResult#");
+        const recommendedResponse =
+          await TvShowApiService.getRecommendedTvShows(id);
+        //// console.log(recommendedResponse.data, "recommendedTvShowsResult#");
 
-        setRecommendedMoviesResult(recommendedResponse.data.results);
+        setRecommendedTvShowsResult(recommendedResponse.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchRecommendedMoviesData();
+    fetchRecommendedTvShowsData();
   }, [id]);
 
   return (
@@ -39,14 +37,14 @@ function RecommendedMovies() {
         loop={true}
       >
         <div>
-          {recommendedMovies.map((r: any) => (
+          {recommendedTvShows.map((r: any) => (
             <SwiperSlide key={r.id}>
               <img
                 src={`https://image.tmdb.org/t/p/original/${r.poster_path}`}
                 alt="image poster"
               />
               <div className="box-text">
-                <Link to={`/movie/${r.id}`} className="watch-btn play-btn">
+                <Link to={`/tv/${r.id}`} className="watch-btn play-btn">
                   <i className="bx bx-right-arrow"></i>
                 </Link>
               </div>
@@ -58,4 +56,4 @@ function RecommendedMovies() {
   );
 }
 
-export default RecommendedMovies;
+export default RecommendedTvShows;

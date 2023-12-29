@@ -1,30 +1,29 @@
-import MovieApiService from "../../apiService/movieApiService";
+import TvShowApiService from "../../apiService/tvShowsApiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./movieCast.css";
 
-function MovieCast() {
+function TvShowCast() {
   // Destructure the id from useParams directly
   const { id } = useParams<{ id: any }>();
-  const [movieCastResult, setMovieCastResult] = useState<any>({});
+  const [tvShowCastResult, setTvShowCastResult] = useState<any>({});
 
   useEffect(() => {
-    const fetchMovieCastResultData = async () => {
+    const fetchTvShowCastResultData = async () => {
       try {
         // Get movie cast
-        const castResponse = await MovieApiService.getMovieCast(id);
-        //// console.log(castResponse.data, "movieCastResult#");
-        setMovieCastResult(castResponse.data);
+        const castResponse = await TvShowApiService.getTvShowCast(id);
+        console.log(castResponse.data, "tvShowCastResult#");
+        setTvShowCastResult(castResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchMovieCastResultData();
+    fetchTvShowCastResultData();
   }, [id]); // Add id as a dependency to rerun effect when id changes
 
-  // Check if movieCastResult exists before rendering
-  if (!movieCastResult || Object.keys(movieCastResult).length === 0) {
+  // Check if tvShowCastResult exists before rendering
+  if (!tvShowCastResult || Object.keys(tvShowCastResult).length === 0) {
     return null; // or render a loading indicator/error message
   }
 
@@ -34,8 +33,8 @@ function MovieCast() {
       <h2 className="cast-heading">Top Cast</h2>
       <div className="movie-cast">
         <div className="cast">
-          {movieCastResult.cast && movieCastResult.cast.length > 0 ? (
-            movieCastResult.cast.slice(0, 10).map((actor: any) => (
+          {tvShowCastResult.cast && tvShowCastResult.cast.length > 0 ? (
+            tvShowCastResult.cast.slice(0, 10).map((actor: any) => (
               <div key={actor.id} className="cast-box">
                 <a
                   href={`https://www.themoviedb.org/person/${actor.id}`}
@@ -62,4 +61,4 @@ function MovieCast() {
   );
 }
 
-export default MovieCast;
+export default TvShowCast;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import MovieApiService from "../movieApiService/movieApiService";
 import { Link } from "react-router-dom";
+import TvShowApiService from "../apiService/tvShowsApiService";
 
 function TvShows() {
   const [tvShowsResult, setTvShowsResult] = useState<any[]>([]);
@@ -9,7 +9,7 @@ function TvShows() {
   useEffect(() => {
     const fetchTvShowsResultData = async () => {
       try {
-        const response = await MovieApiService.tvShowsApiData(currentPage);
+        const response = await TvShowApiService.tvShowsApiData(currentPage);
         setTvShowsResult((prevMovies) => [
           ...prevMovies,
           ...response.data.results,

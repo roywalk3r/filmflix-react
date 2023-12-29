@@ -1,6 +1,6 @@
 import "./movies.css";
 import { useEffect, useState } from "react";
-import MovieApiService from "../movieApiService/movieApiService";
+import MovieApiService from "../apiService/movieApiService";
 import { Link } from "react-router-dom";
 
 function Movies() {

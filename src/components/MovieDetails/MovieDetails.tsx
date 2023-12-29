@@ -1,4 +1,4 @@
-import MovieApiService from "../movieApiService/movieApiService";
+import MovieApiService from "../apiService/movieApiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./movieDetails.css";
@@ -90,7 +90,7 @@ function MovieDetails() {
             <MoviePlayer movieDetailsResult={movieDetailsResult} />
           </div>
           <div className="about-movie body-container">
-            <div className="sypnosis">
+            <div className="sypnosis" key={movieDetailsResult.id}>
               {/* Check if poster_path exists before rendering image */}
               {movieDetailsResult.poster_path && (
                 <img

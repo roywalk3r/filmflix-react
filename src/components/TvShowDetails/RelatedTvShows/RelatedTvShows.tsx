@@ -1,23 +1,22 @@
-import MovieApiService from "../../apiService/movieApiService";
+import TvShowApiService from "../../apiService/tvShowsApiService";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./relatedMovies.css";
 
-function RelatedMovies() {
+function RelatedTvShows() {
   const { id } = useParams<{ id: any }>();
-  const [relatedMovies, setRelatedMoviesResult] = useState<any[]>([]);
+  const [relatedTvShows, setRelatedTvShowsResult] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchRelatedMoviesData = async () => {
+    const fetchRelatedTvShowsData = async () => {
       try {
-        const relatedResponse = await MovieApiService.getRelatedMovies(id);
-        // console.log(relatedResponse.data, "relatedMoviesResult#");
-        setRelatedMoviesResult(relatedResponse.data.results.slice(0, 4));
+        const relatedResponse = await TvShowApiService.getRelatedTvShows(id);
+        console.log(relatedResponse.data, "relatedTvShowsResult#");
+        setRelatedTvShowsResult(relatedResponse.data.results.slice(0, 4));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    fetchRelatedMoviesData();
+    fetchRelatedTvShowsData();
   }, [id]);
 
   return (
@@ -26,16 +25,16 @@ function RelatedMovies() {
         <h2>Related</h2>
       </div>
       <div className="related-movies">
-        {relatedMovies.map((r: any) => (
+        {relatedTvShows.map((r: any) => (
           <Link to={`/movie/${r.id}`} key={r.id}>
             <div className="movie">
               <img
                 src={`https://image.tmdb.org/t/p/original/${r.poster_path}`}
-                alt={`poster for ${r.original_title}`}
+                alt={`poster for ${r.name}`}
               />
               <div className="movie-container">
                 <small>Similar</small>
-                <h4>{r.original_title}</h4>
+                <h4>{r.name}</h4>
                 <span className="bottom-content">
                   <p>Movie</p>
                   <p>•</p>
@@ -50,4 +49,4 @@ function RelatedMovies() {
   );
 }
 
-export default RelatedMovies;
+export default RelatedTvShows;

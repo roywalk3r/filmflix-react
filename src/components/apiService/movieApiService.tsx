@@ -5,12 +5,6 @@ const baseurl = "https://api.themoviedb.org/3";
 const apikey = "ee49cfa0ba7290f7125021125f5d7c57";
 
 class MovieApiService {
-  //tv shows
-  static tvShowsApiData(page: any) {
-    return axios.get(
-      `${baseurl}/discover/tv?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apikey}`
-    );
-  }
   //movies
   static moviesApiData(page: any) {
     return axios.get(
@@ -38,10 +32,10 @@ class MovieApiService {
     return axios.get(`${baseurl}/trending/movie/week?api_key=${apikey}`);
   }
 
-  // getSearchMovie
+  // getSearchMovie : changed from movie to multi to search for all
   static getSearchMovie(data: { movieName: any }) {
     return axios.get(
-      `${baseurl}/search/movie?api_key=${apikey}&query=${data.movieName}`
+      `${baseurl}/search/multi?api_key=${apikey}&query=${data.movieName}`
     );
   }
 

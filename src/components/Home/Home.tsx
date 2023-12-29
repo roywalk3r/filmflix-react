@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
 import LatestMovies from "./Cards/LatestMovies/LatestMovies";
 import "swiper/css/bundle";
-import MovieApiService from "../movieApiService/movieApiService";
+import MovieApiService from "../apiService/movieApiService";
 import PopularMovies from "./Cards/PopularMovies/PopularMovies";
 import ActionMovies from "./Cards/ActionMovies/ActionMovie";
 import { Link } from "react-router-dom";

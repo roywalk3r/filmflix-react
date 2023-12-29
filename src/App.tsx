@@ -8,6 +8,7 @@ import SearchMovie from "./components/SearchMovie/SearchMovie";
 import Movies from "./components/Movies/Movies";
 import Kids from "./components/Kids/Kids";
 import TvShows from "./components/TvShows/TvShows";
+import TvShowDetails from "./components/TvShowDetails/TvShowDetails";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
-        <Route path="/tv/:id" element={<MovieDetails />} />
+        <Route path="/tv/:id" element={<TvShowDetails />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchMovie />} />
         <Route path="/movies" element={<Movies />} />
