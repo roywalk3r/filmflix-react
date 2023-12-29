@@ -50,7 +50,7 @@ function Navbar() {
           <nav className={`navbar ${isNavVisible ? "show" : ""}`}>
             <ul className="navlinks">
               <li>
-                <Link to="/browse">Browse</Link>
+                <Link to="/home">Home</Link>
               </li>
               <li>
                 <Link to="/movies/">Movies</Link>

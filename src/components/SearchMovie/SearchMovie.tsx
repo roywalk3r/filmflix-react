@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import "./searchMovie.css";
 import MovieApiService from "../movieApiService/movieApiService";
@@ -6,9 +8,13 @@ import { Link } from "react-router-dom";
 function SearchMovie() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Specify the type explicitly
 
   useEffect(() => {
     const fetchSearchResults = async () => {
+      setLoading(true);
+      setError(null);
       try {
         // Call the getSearchMovie method from MovieApiService
         const response = await MovieApiService.getSearchMovie({
@@ -16,24 +22,30 @@ function SearchMovie() {
         });
 
         // Handle the response data
-        // console.log(response, "search result");
         setSearchResults(response.data.results);
       } catch (error) {
         // Handle errors
         console.error(error);
+        setError("An error occurred while fetching search results.");
+      } finally {
+        setLoading(false);
       }
     };
 
-    // Call the fetchSearchResults function when the searchQuery changes
-    if (searchQuery.trim() !== "") {
-      fetchSearchResults();
-    } else {
-      // Reset search results when the search query is empty
-      setSearchResults([]);
-    }
+    // Implement debouncing to delay the API request
+    const timerId = setTimeout(() => {
+      if (searchQuery.trim() !== "") {
+        fetchSearchResults();
+      } else {
+        // Reset search results when the search query is empty
+        setSearchResults([]);
+      }
+    }, 500);
+
+    return () => clearTimeout(timerId);
   }, [searchQuery]);
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
@@ -52,20 +64,12 @@ function SearchMovie() {
             <i className="bx bx-search" id="search-icon"></i>
           </div>
         </div>
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         {searchResults.length > 0 && (
           <div className="movies-content">
             {searchResults.map((item: any) => (
-              //   <div key={item.id} className="search-result-item">
-              //     <h3>{item.title}</h3>
-              //     <div className="result-item">
-              //       <div className="result-image">
-              //         <img
-              //           src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-              //         />
-              //       </div>
-              //     </div>
-              //   </div>
-              <div className="movie-box">
+              <div className="movie-box" key={item.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   alt={`Poster for ${item.original_title}`}
@@ -78,15 +82,10 @@ function SearchMovie() {
                     {new Date(item.release_date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
-                      day: "numeric", // or "2-digit" for two-digit day representation
+                      day: "numeric",
                     })}
                   </span>
-
-                  <Link
-                    to={`/movie/${item.id}`}
-                    key={item.id}
-                    className="watch-btn play-btn"
-                  >
+                  <Link to={`/movie/${item.id}`} className="watch-btn play-btn">
                     <i className="bx bx-right-arrow"></i>
                   </Link>
                 </div>

@@ -1,0 +1,23 @@
+.load-more-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.load-more-btn {
+  display: flex;
+  color: var(--g-white);
+  background: var(--daisy);
+  outline: none;
+  border: var(--daisy);
+  margin: 1.5rem auto;
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+#movies {
+  margin-top: 5%;
+}
