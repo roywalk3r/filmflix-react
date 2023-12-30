@@ -122,12 +122,22 @@
   right: 0 !important;
   position: absolute;
 }
-.swiper-pagination-bullet {
-  background: var(--daisy) !important;
+/* target the active bullet */
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: var(--primary-color);
+  opacity: 1;
+}
+span.swiper-pagination {
+  right: 0;
+  position: absolute;
+}
+span.swiper-pagination-bullet {
+  background: var(--daisy);
   color: #007bff !important;
   width: 10px !important;
   height: 10px !important;
   margin: 0.5rem !important;
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

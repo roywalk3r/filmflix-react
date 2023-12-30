@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TvShowApiService from "../apiService/tvShowsApiService";
+import FetchTvShowGenres from "./FetchGenres/FetchGenres";
 
 function TvShows() {
   const [tvShowsResult, setTvShowsResult] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchTvShowsResultData = async () => {
       try {
-        const response = await TvShowApiService.tvShowsApiData(currentPage);
+        const response = await TvShowApiService.tvShowsApiData(
+          currentPage,
+          selectedGenre
+        );
         setTvShowsResult((prevMovies) => [
           ...prevMovies,
           ...response.data.results,
@@ -21,11 +26,16 @@ function TvShows() {
     };
 
     fetchTvShowsResultData();
-  }, [currentPage]);
+  }, [currentPage, selectedGenre]);
 
   const handleLoadMore = () => {
     // Increment the current page when the "Load More" button is clicked
     setCurrentPage((prevPage) => prevPage + 1);
+  };
+  const handleGenreChange = (selectedGenreId: number) => {
+    setSelectedGenre(selectedGenreId !== 0 ? selectedGenreId : null);
+    setTvShowsResult([]); // Reset the moviesResult array
+    setCurrentPage(1); // Reset the currentPage
   };
 
   return (
@@ -34,6 +44,7 @@ function TvShows() {
         {/*  Heading   */}
         <div className="heading">
           <h2 className="heading-title">All Tv Shows</h2>
+          <FetchTvShowGenres onSelectGenre={handleGenreChange} />{" "}
         </div>
         {/* Movies Content   */}
         <div className="movies-content">

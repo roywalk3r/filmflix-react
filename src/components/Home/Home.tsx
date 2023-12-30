@@ -58,14 +58,16 @@ function Home() {
                 <div className="swiper-content-wrapper">
                   <div className="content-text">
                     <div className="banner_movie_name">
-                      <h1>{b.original_title}</h1>
+                      <h1>{b.original_title || b.name}</h1>
                     </div>
                     <div className="banner_movie_details">
                       <span className="question_mark">R</span>
                       <span className="hd">HD</span>
                       <span className="caption">CC</span>
                       <span className="release_date">
-                        {new Date(b.release_date).toLocaleDateString("en-US", {
+                        {new Date(
+                          b.release_date || b.first_air_date
+                        ).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "short",
                           day: "numeric", // or "2-digit" for two-digit day representation
@@ -75,13 +77,26 @@ function Home() {
                     <div className="banner_movie_overview">
                       <p>{b.overview}</p>
                     </div>
-                    <Link
-                      to={`/movie/${b.id}`}
-                      className="banner_movie_play_btn"
-                    >
-                      <i className="fas fa-play"></i>
-                      <p className="banner_movie_play_text">Play now</p>
-                    </Link>
+                    {/* Check if media_type is "movie" before rendering the link and button */}
+                    {b.media_type === "movie" && (
+                      <Link
+                        to={`/movie/${b.id}`}
+                        className="banner_movie_play_btn"
+                      >
+                        <i className="fas fa-play"></i>
+                        <p className="banner_movie_play_text">Play now</p>
+                      </Link>
+                    )}
+                    {/* Check if media_type is "tv" before rendering the link and button */}
+                    {b.media_type === "tv" && (
+                      <Link
+                        to={`/tv/${b.id}`}
+                        className="banner_movie_play_btn"
+                      >
+                        <i className="fas fa-play"></i>
+                        <p className="banner_movie_play_text">Play now</p>
+                      </Link>
+                    )}
                   </div>
                   <div className="swiper-content-image">
                     <img

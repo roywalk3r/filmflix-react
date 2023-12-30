@@ -2,15 +2,20 @@ import "./movies.css";
 import { useEffect, useState } from "react";
 import MovieApiService from "../apiService/movieApiService";
 import { Link } from "react-router-dom";
+import FetchGenres from "./FetchGenres/FetchGenres";
 
 function Movies() {
   const [moviesResult, setMoviesResult] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchMoviesResultData = async () => {
       try {
-        const response = await MovieApiService.moviesApiData(currentPage);
+        const response = await MovieApiService.moviesApiData(
+          currentPage,
+          selectedGenre
+        );
         setMoviesResult((prevMovies) => [
           ...prevMovies,
           ...response.data.results,
@@ -22,11 +27,15 @@ function Movies() {
     };
 
     fetchMoviesResultData();
-  }, [currentPage]);
+  }, [currentPage, selectedGenre]);
 
   const handleLoadMore = () => {
-    // Increment the current page when the "Load More" button is clicked
     setCurrentPage((prevPage) => prevPage + 1);
+  };
+  const handleGenreChange = (selectedGenreId: number) => {
+    setSelectedGenre(selectedGenreId !== 0 ? selectedGenreId : null);
+    setMoviesResult([]); // Reset the moviesResult array
+    setCurrentPage(1); // Reset the currentPage
   };
 
   return (
@@ -35,6 +44,8 @@ function Movies() {
         {/*  Heading   */}
         <div className="heading">
           <h2 className="heading-title">All Movies</h2>
+          {/* Pass the handleGenreChange function to FetchGenres */}
+          <FetchGenres onSelectGenre={handleGenreChange} />{" "}
         </div>
         {/* Movies Content   */}
         <div className="movies-content">

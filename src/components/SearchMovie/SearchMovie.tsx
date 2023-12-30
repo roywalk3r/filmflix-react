@@ -50,7 +50,7 @@ function SearchMovie() {
             <input
               type="search"
               id="search-input"
-              placeholder="Search movie"
+              placeholder="Search tv & movie here, "
               value={searchQuery}
               onChange={handleInputChange}
             />

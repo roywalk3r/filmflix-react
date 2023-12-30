@@ -6,11 +6,23 @@ const apikey = "ee49cfa0ba7290f7125021125f5d7c57";
 
 class MovieApiService {
   //movies
-  static moviesApiData(page: any) {
+  static moviesApiData(page: any, genreId: number | null = null) {
+    let apiUrl = `${baseurl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apikey}`;
+
+    // If a genre is selected, add it to the API URL
+    if (genreId !== null) {
+      apiUrl += `&with_genres=${genreId}`;
+    }
+
+    return axios.get(apiUrl);
+  }
+  //fetch genre
+  static fetchGenres() {
     return axios.get(
-      `${baseurl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apikey}`
+      `${baseurl}/genre/movie/list?api_key=${apikey}&language=en-US`
     );
   }
+  // ba
   // animation:16
   static fetchKidsMovies(page: any) {
     return axios.get(
@@ -19,7 +31,7 @@ class MovieApiService {
   }
   // bannerApiData
   static bannerApiData() {
-    return axios.get(`${baseurl}/trending/movie/week?api_key=${apikey}`);
+    return axios.get(`${baseurl}/trending/all/week?api_key=${apikey}`);
   }
 
   // trendingMovieApiData

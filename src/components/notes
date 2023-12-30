@@ -202,3 +202,11 @@
 //         </ul>
 //       </div>
 //     )}
+
+// Moveiss
+// Append data to existing one
+// const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//   const selectedGenreId = parseInt(event.target.value);
+//   setSelectedGenre(selectedGenreId !== 0 ? selectedGenreId : null);
+//   // You can add additional logic here if needed
+// };

@@ -1,0 +1,10 @@
+.select_genre {
+  background: var(--primary-color);
+  color: var(--g-white);
+  padding: 7px;
+  border: none;
+  border-radius: 0.6rem;
+}
+select {
+  overflow-y: auto;
+}

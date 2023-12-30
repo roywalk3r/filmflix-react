@@ -139,7 +139,7 @@ function TvShowDetails() {
                   {"Countries:"}
                   {displayProductionCountries()}
                 </div>
-                {tvShowDetailsResult.seasons &&
+                {/* {tvShowDetailsResult.seasons &&
                   tvShowDetailsResult.seasons.length > 0 && (
                     <div>
                       <h2>Seasons:</h2>
@@ -151,14 +151,12 @@ function TvShowDetails() {
                               <h3>{season.name}</h3>
                               <p>Air Date: {season.air_date}</p>
                               <p>Episode Count: {season.episode_count}</p>
-                              {/* <p>Episode Count: {season.episode_count}</p> */}
                               <p>Overview: {season.overview}</p>
-                              {/* Add more details as needed */}
                             </li>
                           ))}
                       </ul>
                     </div>
-                  )}
+                  )} */}
                 <div className="rating-card">
                   <div className="rating-content">
                     <h2 className="card-heading">
