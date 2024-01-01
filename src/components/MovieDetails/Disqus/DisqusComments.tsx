@@ -12,7 +12,6 @@ function DisqusComments({
   pageTitle,
 }: DisqusCommentsProps) {
   useEffect(() => {
-    // Replace 'YOUR_SHORTNAME' with your Disqus shortname
     const shortname = "fan2one";
 
     const disqusConfig = function (this: {
@@ -41,8 +40,6 @@ function DisqusComments({
   }, [pageUrl, pageIdentifier, pageTitle]);
 
   const generateUniqueIdentifier = () => {
-    // Implement your logic to generate a unique identifier
-    // For example, you can use a timestamp or any other method
     return Math.floor(Math.random() * 1000000).toString();
   };
 

@@ -5,10 +5,13 @@ import TvShowCast from "./Casts/tvShowCast";
 import TvShowPlayer from "./TvShowPlayer/TvShowPlayer";
 import RecommendedTvShows from "./RecommendedTvShows/RecommendedTvShows";
 import RelatedTvShows from "./RelatedTvShows/RelatedTvShows";
+import SeasonSelector from "./SeasonSelector/SeasonSelector";
 // import DisqusComments from "./Disqus/DisqusComments";
 function TvShowDetails() {
   const { id } = useParams<{ id: any }>();
   const [tvShowDetailsResult, setTvShowDetailsResult] = useState<any>({});
+  const [selectedSeason, setSelectedSeason] = useState<any | null>(null);
+
   const displayGenres = () => {
     return tvShowDetailsResult.genres?.map((genre: any) => (
       <span key={genre.id}>{genre.name}</span>
@@ -28,7 +31,9 @@ function TvShowDetails() {
       )
     );
   };
-
+  const handleSeasonChange = (season: any) => {
+    setSelectedSeason(season);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -83,49 +88,135 @@ function TvShowDetails() {
             <TvShowPlayer tvShowDetailsResult={tvShowDetailsResult} />
           </div>
           <div className="about-movie body-container">
+            <div className="heading">
+              <h2 className="heading-title"></h2>
+              {/* Pass the SeasonSelector function to fetch Seasons */}
+              {tvShowDetailsResult.seasons &&
+                tvShowDetailsResult.seasons.length > 0 && (
+                  <SeasonSelector
+                    seasons={tvShowDetailsResult.seasons}
+                    onSeasonChange={handleSeasonChange}
+                  />
+                )}{" "}
+            </div>
+
             <div className="sypnosis">
               {/* Check if poster_path exists before rendering image */}
-              {tvShowDetailsResult.poster_path && (
+              {selectedSeason ? (
+                // If a season is selected, use its poster
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.poster_path}`}
-                  alt={`Poster for ${tvShowDetailsResult.original_title}`}
+                  src={`https://image.tmdb.org/t/p/original/${selectedSeason.poster_path}`}
+                  alt={`Poster for ${selectedSeason.name}`}
                   className="img"
                 />
+              ) : (
+                // Otherwise, use the default poster
+                tvShowDetailsResult.poster_path && (
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.poster_path}`}
+                    alt={`Poster for ${tvShowDetailsResult.original_title}`}
+                    className="img"
+                  />
+                )
               )}
-              <div className="content">
-                <h2>{tvShowDetailsResult.name}</h2>
-                <p className="tagline">{tvShowDetailsResult.tagline}</p>
 
+              <div className="content">
+                {selectedSeason ? (
+                  // Render content for the selected season
+                  <>
+                    <h2>
+                      {tvShowDetailsResult.name} {selectedSeason.name}
+                    </h2>
+                  </>
+                ) : (
+                  // Render content for the default view (no selected season)
+                  <>
+                    <h2>{tvShowDetailsResult.name}</h2>
+                    <p className="tagline">{tvShowDetailsResult.tagline}</p>
+                  </>
+                )}
                 <div className="req">
-                  {tvShowDetailsResult.first_air_date && (
-                    <span>
-                      <i className="bx bx-calendar-alt"></i>
+                  {selectedSeason ? (
+                    // Render content for the selected season
+                    <>
+                      <span>
+                        <i className="bx bx-calendar-alt"></i>
+                        {/* Include the release date for the selected season if available */}
+                        {selectedSeason.air_date &&
+                          new Date(selectedSeason.air_date).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                            }
+                          )}
+                      </span>
+                      {/* Adjust the age requirement and episode run time for the selected season */}
+                      <span className="age-req">
+                        <i>R</i>
+                      </span>
+                      <span>
+                        <i className="bx bx-time"></i>
+                        {tvShowDetailsResult.episode_run_time}min/ep
+                      </span>
+                    </>
+                  ) : (
+                    // Render content for the default view (no selected season)
+                    <>
+                      {tvShowDetailsResult.first_air_date && (
+                        <span>
+                          <i className="bx bx-calendar-alt"></i>
+                          {new Date(
+                            tvShowDetailsResult.first_air_date
+                          ).toLocaleDateString("en-US", {
+                            year: "numeric",
+                          })}
+                        </span>
+                      )}
+                      <span className="age-req">
+                        <i>17+</i>
+                      </span>
+                      <span>
+                        <i className="bx bx-time"></i>
+                        {tvShowDetailsResult.episode_run_time}min/ep
+                      </span>
+                    </>
+                  )}
+                </div>
+                {selectedSeason ? (
+                  <>
+                    <p>{selectedSeason.overview}</p>
+                    <span id="release">
+                      <i className="fa fa-calendar"></i> Release date :
+                      {new Date(selectedSeason.air_date).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric", // or "2-digit" for two-digit day representation
+                        }
+                      )}
+                    </span>
+                    <div className="genres">
+                      {"episode count:"}
+                      {selectedSeason.episode_count}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p>{tvShowDetailsResult.overview}</p>
+                    <span id="release">
+                      <i className="fa fa-calendar"></i> Release date :
                       {new Date(
                         tvShowDetailsResult.first_air_date
                       ).toLocaleDateString("en-US", {
                         year: "numeric",
+                        month: "long",
+                        day: "numeric", // or "2-digit" for two-digit day representation
                       })}
                     </span>
-                  )}
-                  <span className="age-req">
-                    <i>17+</i>
-                  </span>
-                  <span>
-                    <i className="bx bx-time"></i>
-                    {tvShowDetailsResult.episode_run_time}min/ep
-                  </span>
-                </div>
-                <p>{tvShowDetailsResult.overview}</p>
-                <span id="release">
-                  <i className="fa fa-calendar"></i> Release date :
-                  {new Date(
-                    tvShowDetailsResult.first_air_date
-                  ).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric", // or "2-digit" for two-digit day representation
-                  })}
-                </span>
+                  </>
+                )}
+
                 <div className="genres">
                   {"Genres:"}
                   {displayGenres()}
@@ -139,24 +230,7 @@ function TvShowDetails() {
                   {"Countries:"}
                   {displayProductionCountries()}
                 </div>
-                {/* {tvShowDetailsResult.seasons &&
-                  tvShowDetailsResult.seasons.length > 0 && (
-                    <div>
-                      <h2>Seasons:</h2>
-                      <ul>
-                        {tvShowDetailsResult.seasons
-                          .slice(1, 2)
-                          .map((season: any) => (
-                            <li key={season.id}>
-                              <h3>{season.name}</h3>
-                              <p>Air Date: {season.air_date}</p>
-                              <p>Episode Count: {season.episode_count}</p>
-                              <p>Overview: {season.overview}</p>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  )} */}
+
                 <div className="rating-card">
                   <div className="rating-content">
                     <h2 className="card-heading">

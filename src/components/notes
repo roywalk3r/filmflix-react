@@ -184,7 +184,7 @@
 //     ]
 //   }
 
-//fetch SeSONS
+//fetch SeaSONS
 // {tvShowDetailsResult.seasons &&
 //     tvShowDetailsResult.seasons.length > 0 && (
 //       <div>

@@ -16,6 +16,16 @@ class TvShowApiService {
 
     return axios.get(apiUrl);
   }
+
+  // static getEpisodeDetails(
+  //   seriesId: any,
+  //   seasonNumber: any,
+  //   episodeNumber: any
+  // ) {
+  //   const apiUrl = `${baseurl}/tv/${seriesId}/season/${seasonNumber}/episode/${episodeNumber}?api_key=${apikey}&language=en-US`;
+
+  //   return axios.get(apiUrl);
+  // }
   static fetchGenres() {
     return axios.get(
       `${baseurl}/genre/tv/list?api_key=${apikey}&language=en-US`
