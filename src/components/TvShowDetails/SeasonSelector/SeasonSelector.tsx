@@ -28,7 +28,7 @@ const SeasonSelector: React.FC<SeasonSelectorProps> = ({
         className="seasonSelector"
         onChange={handleSeasonChange}
       >
-        <option value="" disabled selected>
+        <option value="" disabled defaultValue="">
           Select Season
         </option>
         {seasons.map((season) => (

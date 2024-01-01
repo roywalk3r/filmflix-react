@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TvShowDetailsResult {
   id: number;
@@ -9,20 +9,29 @@ interface TvShowDetailsResult {
 
 interface TvShowPlayerProps {
   tvShowDetailsResult: TvShowDetailsResult;
+  onVidSrcChange: (newVidSrc: string) => void;
+  vidSrcUrl: string; // Add this prop to receive vidSrcUrl
 }
 
-const TvShowPlayer: React.FC<TvShowPlayerProps> = ({ tvShowDetailsResult }) => {
+const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
+  tvShowDetailsResult,
+  onVidSrcChange,
+  vidSrcUrl, // Receive vidSrcUrl as a prop
+}) => {
   const [thumbnailVisible, setThumbnailVisible] = useState(true);
   const [videoVisible, setVideoVisible] = useState(true);
   const [playButtonVisible, setPlayButtonVisible] = useState(true);
-
-  const vidSrcUrl = `https://vidsrc.to/embed/tv/${tvShowDetailsResult.id}`;
 
   const playMovie = () => {
     setThumbnailVisible(false);
     setVideoVisible(true);
     setPlayButtonVisible(false);
   };
+
+  useEffect(() => {
+    // Call the callback function with the updated vidSrcUrl
+    onVidSrcChange(vidSrcUrl);
+  }, [vidSrcUrl, onVidSrcChange]);
 
   return (
     <div className="movie-play">

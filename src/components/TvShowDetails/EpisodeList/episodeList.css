@@ -1,0 +1,13 @@
+.episode-buttons {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 6px solid #0e0e0e;
+}
+button.episode_button {
+  background: var(--daisy);
+  border: none;
+  outline: none;
+  padding: 5px;
+  margin: 4px auto;
+  width: 100%;
+}
