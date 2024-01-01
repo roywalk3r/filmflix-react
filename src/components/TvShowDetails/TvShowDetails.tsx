@@ -6,8 +6,8 @@ import TvShowPlayer from "./TvShowPlayer/TvShowPlayer";
 import RecommendedTvShows from "./RecommendedTvShows/RecommendedTvShows";
 import RelatedTvShows from "./RelatedTvShows/RelatedTvShows";
 import SeasonSelector from "./SeasonSelector/SeasonSelector";
-// import DisqusComments from "./Disqus/DisqusComments";
-
+import DisqusComments from "../MovieDetails/Disqus/DisqusComments";
+import "./tvSowsDetail.css";
 function TvShowDetails() {
   const { id } = useParams<{ id: any }>();
   const [tvShowDetailsResult, setTvShowDetailsResult] = useState<any>({});
@@ -97,22 +97,20 @@ function TvShowDetails() {
 
             {/* Creating Episode Buttons From Episode Count {Api Request Results} /Selected Season */}
             <div className="episode-buttons">
-
-            
-            {selectedSeason &&
-              Array.from(
-                { length: selectedSeason.episode_count },
-                (_, index) => (
-                  <button
-                    key={index + 1}
-                    className="episode_button"
-                    onClick={() => handleEpisodeClick(index + 1)}
-                  >
-                    Episode {index + 1}
-                  </button>
-                )
-              )}
-</div>
+              {selectedSeason &&
+                Array.from(
+                  { length: selectedSeason.episode_count },
+                  (_, index) => (
+                    <button
+                      key={index + 1}
+                      className="episode_button"
+                      onClick={() => handleEpisodeClick(index + 1)}
+                    >
+                      Episode {index + 1}
+                    </button>
+                  )
+                )}
+            </div>
             <div className="sypnosis">
               {/* Check if poster_path exists before rendering image */}
               {selectedSeason ? (
@@ -252,7 +250,26 @@ function TvShowDetails() {
                     <span>{tvShowDetailsResult.vote_count}</span>
                   </div>
                   <div className="stars">
-                    {/* Your star rating input goes here */}
+                    <input type="radio" name="rating" id="star5" />
+                    <label htmlFor="star5">
+                      <i className="fa fa-star"></i>
+                    </label>
+                    <input type="radio" name="rating" id="star4" />
+                    <label htmlFor="star4">
+                      <i className="fa fa-star"></i>
+                    </label>
+                    <input type="radio" name="rating" id="star3" />
+                    <label htmlFor="star3">
+                      <i className="fa fa-star"></i>
+                    </label>
+                    <input type="radio" name="rating" id="star2" />
+                    <label htmlFor="star2">
+                      <i className="fa fa-star"></i>
+                    </label>
+                    <input type="radio" name="rating" id="star1" />
+                    <label htmlFor="star1">
+                      <i className="fa fa-star"></i>
+                    </label>{" "}
                   </div>
                   <p className="thought">What do you think about the movie?</p>
                 </div>
@@ -271,7 +288,7 @@ function TvShowDetails() {
           <i className="bx bxs-star star"></i>
           Comment Section
         </h2>
-        {/* <DisqusComments /> */}
+        <DisqusComments />
       </div>
       <div className="copyright">&#169; Godak All rights Reserved</div>
     </>

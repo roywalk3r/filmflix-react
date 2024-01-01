@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./episodeList.css";
 // Define a type or interface for the season object
 interface Season {
   id: number;
