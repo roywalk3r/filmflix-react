@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 
 interface TvShowDetailsResult {
   id: number;
@@ -14,19 +14,19 @@ interface TvShowPlayerProps {
 }
 
 const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
-  tvShowDetailsResult,
+  // tvShowDetailsResult,
   onVidSrcChange,
   vidSrcUrl, // Receive vidSrcUrl as a prop
 }) => {
-  const [thumbnailVisible, setThumbnailVisible] = useState(true);
-  const [videoVisible, setVideoVisible] = useState(true);
-  const [playButtonVisible, setPlayButtonVisible] = useState(true);
+  // const [thumbnailVisible, setThumbnailVisible] = useState(true);
+  // const [videoVisible, setVideoVisible] = useState(true);
+  // const [playButtonVisible, setPlayButtonVisible] = useState(true);
 
-  const playMovie = () => {
-    setThumbnailVisible(false);
-    setVideoVisible(true);
-    setPlayButtonVisible(false);
-  };
+  // const playMovie = () => {
+  //   // setThumbnailVisible(false);
+  //   setVideoVisible(true);
+  //   setPlayButtonVisible(false);
+  // };
 
   useEffect(() => {
     // Call the callback function with the updated vidSrcUrl
@@ -35,6 +35,8 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
 
   return (
     <div className="movie-play">
+      <iframe src={vidSrcUrl} allowFullScreen allow="autoplay"></iframe>
+
       {/* {tvShowDetailsResult.backdrop_path && thumbnailVisible && (
         <img
           src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.backdrop_path}`}
@@ -43,9 +45,9 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
           loading="lazy"
         />
       )} */}
-      {videoVisible && (
+      {/* {videoVisible && (
         <iframe src={vidSrcUrl} allowFullScreen allow="autoplay"></iframe>
-      )}
+      )} */}
       {/* {playButtonVisible && (
         <i
           className="fa-solid fa-play play-movie-btn"
