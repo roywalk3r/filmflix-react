@@ -6,12 +6,16 @@ import TvShowPlayer from "./TvShowPlayer/TvShowPlayer";
 import RecommendedTvShows from "./RecommendedTvShows/RecommendedTvShows";
 import RelatedTvShows from "./RelatedTvShows/RelatedTvShows";
 import SeasonSelector from "./SeasonSelector/SeasonSelector";
-import DisqusComments from "../MovieDetails/Disqus/DisqusComments";
+// import DisqusComments from "../MovieDetails/Disqus/DisqusComments";
+import DisqusComments from "./Disqus/DisqusComments";
+
 import "./tvSowsDetail.css";
+
 function TvShowDetails() {
   const { id } = useParams<{ id: any }>();
   const [tvShowDetailsResult, setTvShowDetailsResult] = useState<any>({});
   const [selectedSeason, setSelectedSeason] = useState<any | null>(null);
+  const [selectedEpisodes, setSelectedEpisodes] = useState<number[]>([]);
   const [currentEpisodeNumber, setCurrentEpisodeNumber] = useState<
     number | null
   >(null);
@@ -19,7 +23,6 @@ function TvShowDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Get movie details
         const detailsResponse = await TvShowApiService.getTvShowDetails(id);
         console.log(detailsResponse.data, "tvShowDetailsResult#");
         setTvShowDetailsResult(detailsResponse.data);
@@ -31,14 +34,32 @@ function TvShowDetails() {
     fetchData();
   }, [id]);
 
+  const updateUrl = (
+    seasonNumber: number,
+    episodeNumber: number | null = null
+  ) => {
+    const url = `/tv/${id}/#/season${seasonNumber}${
+      episodeNumber ? `/episode${episodeNumber}` : ""
+    }`;
+    window.history.pushState({}, "", url);
+  };
+
   const handleSeasonChange = (season: any) => {
     setSelectedSeason(season);
+    setCurrentEpisodeNumber(null);
+    setSelectedEpisodes([]); // Reset selected episodes when switching to a new season
+    updateUrl(season.season_number);
   };
 
   const handleEpisodeClick = (episodeNumber: number) => {
+    setSelectedEpisodes((prevSelectedEpisodes) => [
+      ...prevSelectedEpisodes,
+      episodeNumber,
+    ]);
     setCurrentEpisodeNumber(episodeNumber);
-  };
 
+    updateUrl(selectedSeason.season_number, episodeNumber);
+  };
   const displayGenres = () => {
     return tvShowDetailsResult.genres?.map((genre: any) => (
       <span key={genre.id}>{genre.name}</span>
@@ -60,17 +81,17 @@ function TvShowDetails() {
       )
     );
   };
-  // Conditionally set vidSrcUrl based on whether a season is selected
+
   const vidSrcUrl = selectedSeason
-    ? `https://vidsrc.to/embed/tv/${tvShowDetailsResult.id}/${
+    ? `https://vidsrc.xyz/embed/tv?tmdb=${tvShowDetailsResult.id}&season=${
         selectedSeason.season_number
-      }/${currentEpisodeNumber || ""}`
-    : `https://vidsrc.to/embed/tv/${tvShowDetailsResult.id}`;
+      }&episode=${currentEpisodeNumber || ""}`
+    : `https://vidsrc.xyz/embed/tv?tmdb=${tvShowDetailsResult.id}`;
 
   const handleVidSrcChange = (newVidSrc: string) => {
-    // Do something with the updated vidSrcUrl
     console.log("Updated vidSrcUrl:", newVidSrc);
   };
+
   return (
     <>
       <div className="section-container body-container">
@@ -85,7 +106,6 @@ function TvShowDetails() {
 
           <div className="about-movie body-container">
             <div className="heading">
-              {/* Pass the SeasonSelector function to fetch Seasons */}
               {tvShowDetailsResult.seasons &&
                 tvShowDetailsResult.seasons.length > 0 && (
                   <SeasonSelector
@@ -95,7 +115,6 @@ function TvShowDetails() {
                 )}
             </div>
 
-            {/* Creating Episode Buttons From Episode Count {Api Request Results} /Selected Season */}
             <div className="episode-buttons">
               {selectedSeason &&
                 Array.from(
@@ -103,7 +122,9 @@ function TvShowDetails() {
                   (_, index) => (
                     <button
                       key={index + 1}
-                      className="episode_button"
+                      className={`episode_button ${
+                        selectedEpisodes.includes(index + 1) ? "selected" : ""
+                      }`}
                       onClick={() => handleEpisodeClick(index + 1)}
                     >
                       Episode {index + 1}
@@ -111,17 +132,15 @@ function TvShowDetails() {
                   )
                 )}
             </div>
+
             <div className="sypnosis">
-              {/* Check if poster_path exists before rendering image */}
               {selectedSeason ? (
-                // If a season is selected, use its poster
                 <img
                   src={`https://image.tmdb.org/t/p/original/${selectedSeason.poster_path}`}
                   alt={`Poster for ${selectedSeason.name}`}
                   className="img"
                 />
               ) : (
-                // Otherwise, use the default poster
                 tvShowDetailsResult.poster_path && (
                   <img
                     src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.poster_path}`}
@@ -133,14 +152,12 @@ function TvShowDetails() {
 
               <div className="content">
                 {selectedSeason ? (
-                  // Render content for the selected season
                   <>
                     <h2>
                       {tvShowDetailsResult.name} : {selectedSeason.name}
                     </h2>
                   </>
                 ) : (
-                  // Render content for the default view (no selected season)
                   <>
                     <h2>{tvShowDetailsResult.name}</h2>
                     <p className="tagline">{tvShowDetailsResult.tagline}</p>
@@ -148,11 +165,9 @@ function TvShowDetails() {
                 )}
                 <div className="req">
                   {selectedSeason ? (
-                    // Render content for the selected season
                     <>
                       <span>
                         <i className="bx bx-calendar-alt"></i>
-                        {/* Include the release date for the selected season if available */}
                         {selectedSeason.air_date &&
                           new Date(selectedSeason.air_date).toLocaleDateString(
                             "en-US",
@@ -161,7 +176,6 @@ function TvShowDetails() {
                             }
                           )}
                       </span>
-                      {/* Adjust the age requirement and episode run time for the selected season */}
                       <span className="age-req">
                         <i>R</i>
                       </span>
@@ -171,7 +185,6 @@ function TvShowDetails() {
                       </span>
                     </>
                   ) : (
-                    // Render content for the default view (no selected season)
                     <>
                       {tvShowDetailsResult.first_air_date && (
                         <span>
@@ -193,6 +206,7 @@ function TvShowDetails() {
                     </>
                   )}
                 </div>
+
                 {selectedSeason ? (
                   <>
                     <p>{selectedSeason.overview}</p>
@@ -237,6 +251,7 @@ function TvShowDetails() {
                   {"Companies:"}
                   {displayProductionCompanies()}
                 </div>
+
                 <div className="genres">
                   {"Countries:"}
                   {displayProductionCountries()}
@@ -249,6 +264,7 @@ function TvShowDetails() {
                     </h2>
                     <span>{tvShowDetailsResult.vote_count}</span>
                   </div>
+
                   <div className="stars">
                     <input type="radio" name="rating" id="star5" />
                     <label htmlFor="star5">
@@ -269,27 +285,35 @@ function TvShowDetails() {
                     <input type="radio" name="rating" id="star1" />
                     <label htmlFor="star1">
                       <i className="fa fa-star"></i>
-                    </label>{" "}
+                    </label>
                   </div>
+
                   <p className="thought">What do you think about the movie?</p>
                 </div>
               </div>
             </div>
+
             <TvShowCast />
           </div>
         </div>
+
         <div className="right-sidebar">
           <RelatedTvShows />
           <RecommendedTvShows />
         </div>
       </div>
+
       <div className="comment-section container">
         <h2 className="comment-head">
           <i className="bx bxs-star star"></i>
           Comment Section
         </h2>
-        <DisqusComments />
+        <DisqusComments
+          pageIdentifier={`tvshow-${id}-season-${selectedSeason?.season_number}`}
+          pageTitle={`Comments for ${tvShowDetailsResult.name}`}
+        />{" "}
       </div>
+
       <div className="copyright">&#169; Godak All rights Reserved</div>
     </>
   );

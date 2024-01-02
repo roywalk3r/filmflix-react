@@ -35,25 +35,25 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
 
   return (
     <div className="movie-play">
-      {tvShowDetailsResult.backdrop_path && thumbnailVisible && (
+      {/* {tvShowDetailsResult.backdrop_path && thumbnailVisible && (
         <img
           src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.backdrop_path}`}
           alt={tvShowDetailsResult.name}
           className="movie-box-img"
           loading="lazy"
         />
-      )}
+      )} */}
       {videoVisible && (
         <iframe src={vidSrcUrl} allowFullScreen allow="autoplay"></iframe>
       )}
-      {playButtonVisible && (
+      {/* {playButtonVisible && (
         <i
           className="fa-solid fa-play play-movie-btn"
           style={{ color: "#ffffff" }}
           id="play-button"
           onClick={playMovie}
         ></i>
-      )}
+      )} */}
     </div>
   );
 };
