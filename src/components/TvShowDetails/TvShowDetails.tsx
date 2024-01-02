@@ -32,8 +32,39 @@ function TvShowDetails() {
     };
 
     fetchData();
-  }, [id]);
 
+    // Update meta tags directly in the document head
+    const updateMetaTags = () => {
+      document.title = `${tvShowDetailsResult.name}`;
+
+      const metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      metaDescription.content =
+        tvShowDetailsResult.overview || "Movie Overview";
+      document.head.appendChild(metaDescription);
+
+      // Add other meta tags as needed
+      const ogType = document.createElement("meta");
+      ogType.content = "website";
+      document.head.appendChild(ogType);
+
+      const ogUrl = document.createElement("meta");
+      ogUrl.content = `https://filmflix-r.netlify.app/tv/${id}`;
+      document.head.appendChild(ogUrl);
+    };
+
+    // Call the function to update meta tags when the component mounts
+    updateMetaTags();
+
+    // Clean up function to remove added meta tags when the component unmounts
+    return () => {
+      document.title = "FilmFlix"; // Reset the title to a default value
+      document.head
+        .querySelectorAll('meta[name="description"]')
+        .forEach((e) => e.remove());
+      // Remove other added meta tags as necessary
+    };
+  }, [id, tvShowDetailsResult]);
   const updateUrl = (
     seasonNumber: number,
     episodeNumber: number | null = null
