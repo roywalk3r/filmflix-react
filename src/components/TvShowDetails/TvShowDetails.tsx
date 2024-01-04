@@ -123,6 +123,28 @@ function TvShowDetails() {
     console.log("Updated vidSrcUrl:", newVidSrc);
   };
 
+  const handleNextEpisode = () => {
+    if (selectedSeason) {
+      const nextEpisodeNumber =
+        currentEpisodeNumber !== null &&
+        currentEpisodeNumber < selectedSeason.episode_count
+          ? currentEpisodeNumber + 1
+          : 1;
+
+      handleEpisodeClick(nextEpisodeNumber);
+    }
+  };
+
+  const handlePreviousEpisode = () => {
+    if (selectedSeason) {
+      const previousEpisodeNumber =
+        currentEpisodeNumber !== null && currentEpisodeNumber > 1
+          ? currentEpisodeNumber - 1
+          : selectedSeason.episode_count;
+
+      handleEpisodeClick(previousEpisodeNumber);
+    }
+  };
   return (
     <>
       <div className="section-container body-container">
@@ -133,6 +155,16 @@ function TvShowDetails() {
               onVidSrcChange={handleVidSrcChange}
               vidSrcUrl={vidSrcUrl}
             />
+            <div className="episode-navigation">
+              <button
+                onClick={handlePreviousEpisode}
+                className="fa-solid fa-backward"
+              ></button>
+              <button
+                onClick={handleNextEpisode}
+                className="fa-solid fa-forward"
+              ></button>
+            </div>
           </div>
 
           <div className="about-movie body-container">

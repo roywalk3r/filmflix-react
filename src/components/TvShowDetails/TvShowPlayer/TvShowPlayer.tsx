@@ -1,4 +1,4 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
 interface TvShowDetailsResult {
   id: number;
@@ -34,7 +34,7 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
   }, [vidSrcUrl, onVidSrcChange]);
 
   return (
-    <div className="movie-play">
+    <>
       <iframe src={vidSrcUrl} allowFullScreen allow="autoplay"></iframe>
 
       {/* {tvShowDetailsResult.backdrop_path && thumbnailVisible && (
@@ -56,7 +56,7 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
           onClick={playMovie}
         ></i>
       )} */}
-    </div>
+    </>
   );
 };
 

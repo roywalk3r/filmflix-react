@@ -1,7 +1,25 @@
+.movie-play {
+  background: #000;
+}
 .episode-buttons {
   max-height: 250px;
   overflow-y: auto;
   border: 6px solid #0e0e0e;
+}
+.episode-navigation {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 5px;
+  row-gap: 1rem;
+  border: none;
+  background: transparent;
+}
+.episode-navigation button {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 6px;
+  font-size: small;
 }
 button.episode_button {
   background: var(--raisin-black);
