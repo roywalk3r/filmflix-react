@@ -12,11 +12,11 @@ interface MoviePlayerProps {
 }
 
 const MoviePlayer: React.FC<MoviePlayerProps> = ({ movieDetailsResult }) => {
-  const [thumbnailVisible, setThumbnailVisible] = useState(true);
+  const [thumbnailVisible, setThumbnailVisible] = useState(false);
   const [videoVisible, setVideoVisible] = useState(true);
-  const [playButtonVisible, setPlayButtonVisible] = useState(true);
+  const [playButtonVisible, setPlayButtonVisible] = useState(false);
 
-  const vidSrcUrl = `https://vidsrc.to/embed/movie/${movieDetailsResult.id}`;
+  const vidSrcUrl = `https://vidsrc.xyz/embed/movie?tmdb=${movieDetailsResult.id}`;
 
   const playMovie = () => {
     setThumbnailVisible(false);
