@@ -33,7 +33,8 @@ function LatestMovies() {
             <div className="swiper-button-next"></div>
           </div>
         </div>
-        <div className="popular-content ">
+
+        <div className="popular-content latest">
           <Swiper
             modules={[Navigation, EffectFade, Autoplay, Pagination]}
             spaceBetween={10}
