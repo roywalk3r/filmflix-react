@@ -37,7 +37,6 @@ function PopularMovies() {
                 src={`https://image.tmdb.org/t/p/original/${p.poster_path}`}
                 alt={`Poster for ${p.original_title}`}
                 className="movie-box-img"
-                loading="lazy"
               />
               <div className="box-text">
                 <h2 className="movie-title">{p.original_title}</h2>

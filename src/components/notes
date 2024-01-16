@@ -71,7 +71,7 @@
 //                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
 //                   alt={`Poster for ${item.original_title}`}
 //                   className="movie-box-img"
-//                   loading="lazy"
+//                   
 //                 />
 //                 <div className="box-text">
 //                   <h2 className="movie-title">{item.original_title}</h2>

@@ -1,0 +1,20 @@
+[[headers]]
+  # Enable gzip compression for specific file types
+  for = "/*.js"
+  [headers.values]
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Encoding = "gzip"
+
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Content-Encoding = "gzip"

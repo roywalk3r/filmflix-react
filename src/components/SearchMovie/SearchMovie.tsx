@@ -67,7 +67,6 @@ function SearchMovie() {
                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   alt={`Poster for ${item.original_title || item.name}`}
                   className="movie-box-img"
-                  loading="lazy"
                 />
                 <div className="box-text">
                   <h2 className="movie-title">

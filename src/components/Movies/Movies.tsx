@@ -7,7 +7,7 @@ import FetchGenres from "./FetchGenres/FetchGenres";
 function Movies() {
   const [moviesResult, setMoviesResult] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchMoviesResultData = async () => {
@@ -56,7 +56,6 @@ function Movies() {
                 src={`https://image.tmdb.org/t/p/original/${m.poster_path}`}
                 alt={`Poster for ${m.original_title}`}
                 className="movie-box-img"
-                loading="lazy"
               />
               <div className="box-text">
                 <h2 className="movie-title">{m.original_title}</h2>
