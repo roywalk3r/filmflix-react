@@ -19,7 +19,7 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.5) 100%
     )
-    insert url("../../assets/footer-bg.jpg");
+    url("../../assets/footer-bg.jpg");
 
   background-position: center;
   background-clip: border-box;
