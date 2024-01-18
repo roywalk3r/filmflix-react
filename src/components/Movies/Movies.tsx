@@ -20,7 +20,7 @@ function Movies() {
           ...prevMovies,
           ...response.data.results,
         ]);
-        console.log(response.data.results, "#moviesResult");
+        // console.log(response.data.results, "#moviesResult");
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }
