@@ -5,6 +5,7 @@ import MovieApiService from "../../../apiService/movieApiService";
 import { Link } from "react-router-dom";
 
 function PopularMovies() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [popularMoviesResult, setPopularMoviesResult] = useState<any[]>([]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function PopularMovies() {
         <div className="movies-content">
           {/* Movies Box  */}
           {popularMoviesResult.map((p) => (
-            <div className="movie-box">
+            <div className="movie-box" key={p.original_title}>
               <img
                 src={`https://image.tmdb.org/t/p/original/${p.poster_path}`}
                 alt={`Poster for ${p.original_title}`}

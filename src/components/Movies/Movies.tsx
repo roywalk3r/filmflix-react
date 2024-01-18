@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import FetchGenres from "./FetchGenres/FetchGenres";
 
 function Movies() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [moviesResult, setMoviesResult] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedGenre, setSelectedGenre] = useState<any | null>(null);
 
   useEffect(() => {
