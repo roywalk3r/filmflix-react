@@ -13,7 +13,7 @@ function ScienceFiction() {
       try {
         const response = await MovieApiService.fetchScienceFictionMovies();
         // console.log(response.data, "popularMoviesResult#");
-        setScienceFictionResult(response.data.results.slice(0, 12));
+        setScienceFictionResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

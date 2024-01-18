@@ -13,7 +13,7 @@ function AdventureMovies() {
       try {
         const response = await MovieApiService.fetchAdventureMovies();
         // console.log(response.data, "popularMoviesResult#");
-        setAdventureMoviesResult(response.data.results.slice(0, 12));
+        setAdventureMoviesResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

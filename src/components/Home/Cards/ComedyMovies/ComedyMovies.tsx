@@ -13,7 +13,7 @@ function ComedyMovies() {
       try {
         const response = await MovieApiService.fetchComedyMovies();
         // console.log(response.data, "popularMoviesResult#");
-        setComedyMoviesResult(response.data.results.slice(0, 12));
+        setComedyMoviesResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

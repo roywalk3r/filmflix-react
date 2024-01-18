@@ -12,7 +12,7 @@ function Animations() {
     const fetchAnimationsResultData = async () => {
       try {
         const response = await MovieApiService.fetchAnimationMovies();
-        setAnimationsResult(response.data.results.slice(0, 12));
+        setAnimationsResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

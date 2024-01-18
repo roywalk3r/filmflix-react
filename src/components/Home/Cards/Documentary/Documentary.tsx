@@ -13,7 +13,7 @@ function Documentary() {
       try {
         const response = await MovieApiService.fetchDocumentaryMovies();
         // console.log(response.data, "popularMoviesResult#");
-        setDocumentaryResult(response.data.results.slice(0, 12));
+        setDocumentaryResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

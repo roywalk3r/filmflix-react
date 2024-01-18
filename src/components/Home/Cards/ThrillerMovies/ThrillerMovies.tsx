@@ -13,7 +13,7 @@ function ThrillerMovies() {
       try {
         const response = await MovieApiService.fetchThrillerMovies();
         // console.log(response.data, "popularMoviesResult#");
-        setThrillerMoviesResult(response.data.results.slice(0, 12));
+        setThrillerMoviesResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }

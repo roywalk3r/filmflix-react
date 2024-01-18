@@ -11,7 +11,7 @@ function HorrorMovies() {
     const fetchHorrorMoviesResultData = async () => {
       try {
         const response = await MovieApiService.fetchHorrorMovies();
-        setHorrorMoviesResult(response.data.results.slice(0, 12));
+        setHorrorMoviesResult(response.data.results);
       } catch (error) {
         console.error("Error fetching banner data:", error);
       }
