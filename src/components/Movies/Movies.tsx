@@ -41,7 +41,7 @@ function Movies() {
 
   return (
     <>
-      <section className="movies container" id="movies">
+      <section className="movies container" id="moviesM">
         {/*  Heading   */}
         <div className="heading">
           <h2 className="heading-title">All Movies</h2>

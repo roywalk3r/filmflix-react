@@ -101,7 +101,7 @@ function Home() {
                   <div className="swiper-content-image">
                     <img
                       src={`https://image.tmdb.org/t/p/original/${b.backdrop_path}`}
-                      className="d-block w-100"
+                      className=" w-100"
                       alt="Banner"
                     />
                   </div>
