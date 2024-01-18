@@ -5,15 +5,8 @@ const baseurl = "https://api.themoviedb.org/3";
 const apikey = "ee49cfa0ba7290f7125021125f5d7c57";
 
 class MovieApiService {
-  /**
-   * Fetches movie data from the API.
-   *
-   * @param {number} page - The page number of the results.
-   * @param {number|null} genreId - The ID of the genre to filter the results by. Can be null.
-   * @returns {Promise<any>} - A promise that resolves to the movie data.
-   */
-  static moviesApiData(page: any, genreId = null) {
-    // Construct the API URL with the base URL, query parameters, and API key
+  //movies
+  static moviesApiData(page: any, genreId: number | null = null) {
     let apiUrl = `${baseurl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apikey}`;
 
     // If a genre is selected, add it to the API URL
@@ -21,16 +14,13 @@ class MovieApiService {
       apiUrl += `&with_genres=${genreId}`;
     }
 
-    // Send a GET request to the API URL and return the response as a promise
     return axios.get(apiUrl);
   }
-  /**
-   * Fetches the list of movie genres from the API.
-   * @returns {Promise<object>} The response object containing the list of genres.
-   */
+  //fetch genre
   static fetchGenres() {
-    const url = `${baseurl}/genre/movie/list?api_key=${apikey}&language=en-US`;
-    return axios.get(url);
+    return axios.get(
+      `${baseurl}/genre/movie/list?api_key=${apikey}&language=en-US`
+    );
   }
   // ba
   // animation:16

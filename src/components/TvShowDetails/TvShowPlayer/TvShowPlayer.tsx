@@ -42,7 +42,7 @@ const TvShowPlayer: React.FC<TvShowPlayerProps> = ({
           src={`https://image.tmdb.org/t/p/original/${tvShowDetailsResult.backdrop_path}`}
           alt={tvShowDetailsResult.name}
           className="movie-box-img"
-          
+          loading="lazy"
         />
       )} */}
       {/* {videoVisible && (

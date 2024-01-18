@@ -31,6 +31,7 @@ const MoviePlayer: React.FC<MoviePlayerProps> = ({ movieDetailsResult }) => {
           src={`https://image.tmdb.org/t/p/original/${movieDetailsResult.backdrop_path}`}
           alt={movieDetailsResult.original_title}
           className="movie-box-img"
+          loading="lazy"
         />
       )}
       {videoVisible && (

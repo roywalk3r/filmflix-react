@@ -46,6 +46,7 @@ function TvShowCast() {
                     src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
                     alt={actor.name}
                     className="cast-img"
+                    loading="lazy"
                   />
                 </a>
                 <span className="cast-title">{actor.name}</span>
