@@ -119,6 +119,9 @@ h4 {
 body::-webkit-scrollbar {
   width: 10px;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /* For Firefox */
 body {
