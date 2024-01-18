@@ -8,7 +8,6 @@ function Movies() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [moviesResult, setMoviesResult] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
 
   useEffect(() => {
