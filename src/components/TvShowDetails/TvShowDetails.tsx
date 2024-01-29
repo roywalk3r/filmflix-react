@@ -110,7 +110,7 @@ function TvShowDetails() {
         .forEach((e) => e.remove());
       // Remove other added meta tags as necessary
     };
-  }, [id]);
+  }, [id, tvShowDetailsResult]);
 
   const updateUrl = (
     seasonNumber: number,
