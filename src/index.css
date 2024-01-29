@@ -93,18 +93,16 @@ html {
 }
 
 body {
-/*   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
-    url("../src/assets/footer-bg.jpg"); */
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    ) insert
-    url("../src/assets/footer-bg.jpg");
-  background-repeat: repeat;
-
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background: linear-gradient(to bottom, #0000004d, #00000080),
+    url("../src/assets/footer-bg.jpg");
+
+  background-repeat: repeat;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  background-clip: content-box;
 }
 
 h1,
@@ -130,7 +128,7 @@ body {
 
 /* Style the scrollbar thumb */
 body::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+  background-color: var(--main-color, #ffb43a);
   border-radius: 10px;
 }
 
