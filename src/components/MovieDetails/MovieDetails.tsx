@@ -17,7 +17,7 @@ function MovieDetails() {
     ));
   };
   const displayProductionCompanies = () => {
-    return movieDetailsRehtsult.production_companies?.map(
+    return movieDetailsResult.production_companies?.map(
       (production_company: any) => (
         <span key={production_company.id}>{production_company.name}</span>
       )
