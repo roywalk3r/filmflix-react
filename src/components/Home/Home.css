@@ -19,12 +19,12 @@ display: flex;
       to bottom,
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.5) 100%
-    )
+    ),
     url("../../assets/footer-bg.jpg");
 
   background-position: center;
   background-clip: border-box;
-  background-attachment: fixed;
+  background-attachment: local;
   margin: 0 auto;
 }
 
