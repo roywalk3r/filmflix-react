@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TvShowApiService from "../apiService/tvShowsApiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

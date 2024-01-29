@@ -1,4 +1,7 @@
-html,body{scroll-behavior:smooth;}
+html,
+body {
+  scroll-behavior: smooth;
+}
 .Home {
   margin-top: 8% !important;
 }
@@ -15,11 +18,10 @@ html,body{scroll-behavior:smooth;}
   flex-shrink: 0;
   align-self: stretch;
   justify-content: space-between;
- background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
     url("../../assets/footer-bg.jpg");
   background-position: center;
-  background-clip: border-box;
-  background-attachment: fixed;
+  background-clip: content-box;
   margin: 0 auto;
 }
 

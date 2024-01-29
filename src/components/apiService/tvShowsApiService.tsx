@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // MovieApiService.js
 import axios from "axios";
 
