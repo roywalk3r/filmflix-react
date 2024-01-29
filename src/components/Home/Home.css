@@ -17,8 +17,6 @@
  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
     url("../../assets/footer-bg.jpg");
   background-position: center;
-  background-clip: border-box;
-  background-attachment: fixed;
   margin: 0 auto;
 }
 
