@@ -46,8 +46,6 @@ export default defineConfig({
         ],
         start_url: "/",
         display: "fullscreen",
-        background_color: "#FFFFFF",
-        theme_color: "#FFFFFF",
         description: "Online Movies Streaming Platform",
       },
       strategies: "generateSW",
