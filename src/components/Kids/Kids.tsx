@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import MovieApiService from "../apiService/movieApiService";
 import { Link } from "react-router-dom";
@@ -45,7 +46,6 @@ function Kids() {
                 src={`https://image.tmdb.org/t/p/original/${k.poster_path}`}
                 alt={`Poster for ${k.original_title}`}
                 className="movie-box-img"
-                loading="lazy"
               />
               <div className="box-text">
                 <h2 className="movie-title">{k.original_title}</h2>

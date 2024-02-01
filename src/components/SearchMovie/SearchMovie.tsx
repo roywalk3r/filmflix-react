@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import "./searchMovie.css";
 import MovieApiService from "../apiService/movieApiService";
@@ -67,7 +68,6 @@ function SearchMovie() {
                   src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   alt={`Poster for ${item.original_title || item.name}`}
                   className="movie-box-img"
-                  loading="lazy"
                 />
                 <div className="box-text">
                   <h2 className="movie-title">

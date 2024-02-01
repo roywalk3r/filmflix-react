@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TvShowApiService from "../apiService/tvShowsApiService";
@@ -55,7 +56,6 @@ function TvShows() {
                 src={`https://image.tmdb.org/t/p/original/${t.poster_path}`}
                 alt={`Poster for ${t.name}`}
                 className="movie-box-img"
-                loading="lazy"
               />
               <div className="box-text">
                 <h2 className="movie-title">{t.name}</h2>

@@ -91,18 +91,21 @@ html {
   font-family: var(--ff-poppins);
   scroll-behavior: smooth;
 }
-
+selector {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
 body {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: linear-gradient(to bottom, #0000004d, #00000080),
+  /* background: linear-gradient(to bottom, #0000004d, #00000080),
     url("../src/assets/footer-bg.jpg");
 
   background-repeat: repeat;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-attachment: fixed;
-  background-clip: content-box;
+  background-attachment: scroll; */
+  background: #0e0e0e;
 }
 
 h1,

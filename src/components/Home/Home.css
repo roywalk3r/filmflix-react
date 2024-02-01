@@ -1,7 +1,3 @@
-html,
-body {
-  scroll-behavior: smooth;
-}
 .Home {
   margin-top: 8% !important;
 }
@@ -20,8 +16,7 @@ body {
   justify-content: space-between;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
     url("../../assets/footer-bg.jpg");
-  background-position: center;
-  background-clip: content-box;
+
   margin: 0 auto;
 }
 
