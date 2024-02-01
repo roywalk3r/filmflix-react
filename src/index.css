@@ -119,9 +119,6 @@ html {
 }
 
 /* For Firefox */
-body {
-  scrollbar-width: thin;
-}
 
 /* Style the scrollbar thumb */
 body::-webkit-scrollbar-thumb {
