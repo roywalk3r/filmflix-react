@@ -1,4 +1,4 @@
-// serch Fuctin tha shows result based on inpput
+// serch Fucti0n tha shows result based on inpput
 // import { useState, useEffect } from "react";
 // import "./searchMovie.css";
 // import MovieApiService from "../movieApiService/movieApiService";
@@ -208,5 +208,102 @@
 // const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 //   const selectedGenreId = parseInt(event.target.value);
 //   setSelectedGenre(selectedGenreId !== 0 ? selectedGenreId : null);
-//   // You can add additional logic here if needed
 // };
+
+//Api Resquest
+// MovieApiService.ts
+//import axios, { AxiosResponse } from "axios";
+
+// const baseurl = "https://api.themoviedb.org/3";
+// const apiKey = "ee49cfa0ba7290f7125021125f5d7c57";
+
+// class MovieApiService {
+//   static apiKey = apiKey;
+
+// Fetch movies API data
+// static moviesApiData(page: any, genreId: number | null = null): Promise<AxiosResponse<any>> {
+//     let apiUrl = `${baseurl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${apiKey}`;
+
+//     // If a genre is selected, add it to the API URL
+//     if (genreId !== null) {
+//       apiUrl += `&with_genres=${genreId}`;
+//     }
+
+//     return axios.get(apiUrl);
+//   }
+
+// Fetch genres
+//   static fetchGenres(): Promise<AxiosResponse<any>> {
+//     return axios.get(`${baseurl}/genre/movie/list?api_key=${apiKey}&language=en-US`);
+//   }
+
+// Fetch kids movies
+//   static fetchKidsMovies(page: any): Promise<AxiosResponse<any>> {
+//     return axios.get(
+//       `${baseurl}/discover/movie?api_key=${apiKey}&with_genres=16&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`
+//     );
+//   }
+
+// Banner API data
+//   static async bannerApiData(): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/trending/all/week?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Trending movie API data
+//   static async trendingMovieApiData(): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/trending/movie/day?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Popular movie API data
+//   static async popularMovieApiData(): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/trending/movie/week?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Search for movies (multi)
+//   static async getSearchMovie(data: { movieName: any }): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/search/multi?api_key=${apiKey}&query=${data.movieName}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Get movie details
+//   static async getMovieDetails(data: any): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/movie/${data}?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Get backdrop image
+//   static async getBackdropImage(data: any): Promise<AxiosResponse<any>> {
+//     const url = `${baseurl}/movie/${data}?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Get movie video
+//   static async getMovieVideo(data: string): Promise<AxiosResponse<string>> {
+//     const url = `${baseurl}/movie/${data}/videos?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Get movie cast
+//   static async getMovieCast(movieId: number): Promise<AxiosResponse<number>> {
+//     const url = `${baseurl}/movie/${movieId}/credits?api_key=${apiKey}`;
+//     return MovieApiService.makeRequest(url);
+//   }
+
+// Add more methods based on your requirements...
+
+// Generic function to make requests and handle errors
+// private static async makeRequest(url: string): Promise<AxiosResponse<any>> {
+//     try {
+//       const response = await axios.get(url);
+//       return response;
+//     } catch (error) {
+//       console.error("Error making request:", error);
+//       throw error;
+//     }
+//   }
+// }
+
+// export default MovieApiService;

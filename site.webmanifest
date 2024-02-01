@@ -1,6 +1,6 @@
 {
-  "name": "filmflix",
-  "short_name": "filmflix",
+  "name": "FilmFlix",
+  "short_name": "FilmFlix",
   "icons": [
     {
       "src": "/pwa-192x192.png",
@@ -29,7 +29,7 @@
   ],
   "start_url": "/",
   "display": "fullscreen",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "description": "Online Movies Streaming Platform"
 }

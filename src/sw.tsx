@@ -2,7 +2,12 @@
 import { skipWaiting, clientsClaim } from "workbox-core";
 import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { StaleWhileRevalidate } from "workbox-strategies";
+import {
+  CacheFirst,
+  NetworkFirst,
+  StaleWhileRevalidate,
+} from "workbox-strategies";
+import { CacheableResponsePlugin } from "workbox-cacheable-response";
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -15,8 +20,40 @@ skipWaiting();
 // Claim the clients
 clientsClaim();
 
-// Use stale-while-revalidate strategy for API requests to TMDB
+// Use cache first strategy for static assets
 registerRoute(
-  ({ url }) => url.origin === "https://api.themoviedb.org",
-  new StaleWhileRevalidate()
+  ({ request }) =>
+    request.destination === "style" || request.destination === "script",
+  new CacheFirst()
 );
+
+// Use network first strategy for dynamic content
+registerRoute(
+  ({ request }) => request.destination === "document",
+  new NetworkFirst()
+);
+
+// Use stale-while-revalidate strategy for API requests to OMDb
+registerRoute(
+  ({ url }) => url.origin === "http://www.omdbapi.com",
+  new StaleWhileRevalidate({
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200], // Only cache valid responses
+      }),
+    ],
+  })
+);
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return (
+        response ||
+        fetch(event.request).catch(() => {
+          // Handle fetch errors
+          return new Response("Network unavailable, using cached content.");
+        })
+      );
+    })
+  );
+});
