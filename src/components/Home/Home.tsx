@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import LatestMovies from "./Cards/LatestMovies/LatestMovies";
 import "swiper/css/bundle";
 import MovieApiService from "../apiService/movieApiService";
@@ -18,6 +18,14 @@ import Documentary from "./Cards/Documentary/Documentary";
 import HorrorMovies from "./Cards/HorrorMovies/HorrorMovies";
 
 function Home() {
+  // const progressCircle = useRef(null);
+  // const progressContent = useRef(null);
+  // const onAutoplayTimeLeft = (s, time, progress) => {
+  //   progressCircle.current.style.setProperty('--progress', 1 - progress);
+  //   progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  // };
+
+
   const [bannerResult, setBannerResult] = useState<any[]>([]);
 
   useEffect(() => {
@@ -39,20 +47,18 @@ function Home() {
       <div className="Home">
         <div className="container">
           <Swiper
-            modules={[Navigation, EffectFade, Autoplay, Pagination]}
+            modules={[Navigation, Autoplay, Pagination]}
             spaceBetween={10}
             slidesPerView={1}
-            loop={true}
-            // navigation={{
-            //   nextEl: ".swiper-button-next",
-            //   prevEl: ".swiper-button-prev",
-            // }}
-
-            autoplay={{ delay: 7000, disableOnInteraction: true }}
+             loop={true}
             pagination={{ clickable: true }}
             grabCursor={true}
-            effect="fade"
-          >
+         centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: true,
+        }}
+                >
             {bannerResult.map((b, index) => (
               <SwiperSlide key={index}>
                 <div className="swiper-content-wrapper">
