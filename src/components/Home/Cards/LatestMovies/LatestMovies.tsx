@@ -75,7 +75,7 @@ function LatestMovies() {
                   <div className="movie-box">
                     <img
                       src={`https://image.tmdb.org/t/p/original/${t.poster_path}`}
-                      alt="{ t.original_title }"
+                      alt={`${t.original_title }`}
                       className="movie-box-img"
                     />
                     <div className="box-text">
