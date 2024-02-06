@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./landingpage.css";
 function LandingPage() {
   return (
+    
     <body>
       <div className="showcase">
         <div className="showcase-top">
