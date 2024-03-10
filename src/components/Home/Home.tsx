@@ -32,7 +32,7 @@ function Home() {
     const fetchBannerData = async () => {
       try {
         const response = await MovieApiService.bannerApiData();
-        //// console.log(response.data, "bannerresult#");
+        console.log(response.data, "bannerresult#");
         setBannerResult(response.data.results.slice(0, 9));
       } catch (error) {
         console.error("Error fetching banner data:", error);
